@@ -1,0 +1,26 @@
+#jumlah-buku {
+    padding: 50px;
+    border: 2px solid #FEB83C;
+
+}
+
+.cari-buku {
+    /* border-color: rgb(242, 229, 213); */
+    float: right;
+}
+
+.list-buku:hover {
+    cursor: pointer;
+}
+
+.home-slider-one {
+    background-image: url("../images/slider-main/mhs1.jpg");
+}
+
+.home-slider-two {
+    background-image: url("../images/slider-main/mhs2.jpg");
+}
+
+.home-slider-three {
+    background-image: url("../images/slider-main/mhs3.jpeg");
+}
