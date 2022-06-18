@@ -41,7 +41,7 @@ const Datatable = () => {
     }
   }, []);
 
-  console.log(data);
+  
 
   const handleDelete = async (id) => {
     try {

@@ -51,7 +51,7 @@ window.env = {
   "SESSION_MANAGER": "local/alvi:@/tmp/.ICE-unix/2162,unix/alvi:/tmp/.ICE-unix/2162",
   "INVOCATION_ID": "c1ee3bbd690d43d1a31212ea48d44131",
   "NODE": "/usr/bin/node",
-  "npm_package_name": "lamadmin",
+  "npm_package_name": "alvigeo",
   "LC_ADDRESS": "id_ID.UTF-8",
   "XDG_RUNTIME_DIR": "/run/user/1000",
   "XDG_MENU_PREFIX": "gnome-",

@@ -42,7 +42,7 @@ export const userInputs = [
     },
   ];
   
-  export const productInputs = [
+  export const bookInputs = [
     {
       id: 1,
       label: "Title",

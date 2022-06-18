@@ -4,7 +4,7 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { bookInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -61,7 +61,7 @@ function App() {
                 }
               />
             </Route>
-            <Route path="products">
+            <Route path="books">
               <Route
                 index
                 element={
@@ -71,7 +71,7 @@ function App() {
                 }
               />
               <Route
-                path=":productId"
+                path=":bookId"
                 element={
                   <RequireAuth>
                     <Single />
@@ -82,10 +82,21 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={productInputs} title="Add New Product" />
+                    <New inputs={bookInputs} title="Add New Book" />
                   </RequireAuth>
                 }
               />
+              
+              <Route path="booksapproval">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <List />
+                  </RequireAuth>
+                }
+              />
+              </Route>
             </Route>
           </Route>
         </Routes>
