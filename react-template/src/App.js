@@ -1,11 +1,14 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import NewBooks from "./pages/newBooks/NewBooks";
 import { bookInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
+
+// Context
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
@@ -82,12 +85,13 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={bookInputs} title="Add New Book" />
+                    <NewBooks inputs={bookInputs} title="Add New Book" />
                   </RequireAuth>
                 }
               />
-              
-              <Route path="booksapproval">
+            </Route>
+            
+            <Route path="booksapproval">
               <Route
                 index
                 element={
@@ -97,7 +101,6 @@ function App() {
                 }
               />
               </Route>
-            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

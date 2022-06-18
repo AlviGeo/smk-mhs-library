@@ -1,13 +1,13 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { bookColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
-const Datatable = () => {
+const DatatableBooks = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Datatable = () => {
     //   }
     // };
     // fetchData()
-    const unsub = onSnapshot(collection(db, "users"), (snapShot) => {
+    const unsub = onSnapshot(collection(db, "books"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {
         list.push({id:doc.id, ...doc.data()});
@@ -44,7 +44,7 @@ const Datatable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "users", id));
+      await deleteDoc(doc(db, "books", id));
     } catch (err) {
       console.log(err);
     }
@@ -76,15 +76,15 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        User List
-        <Link to="/users/new" className="link">
+        Book List
+        <Link to="/books/new" className="link">
           Add New
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={bookColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
@@ -93,4 +93,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default DatatableBooks;
