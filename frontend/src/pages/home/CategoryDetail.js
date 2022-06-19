@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
-// Firebase
-
+// Import Data from Firebase
+import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import {db} from "../../firebase-config";
 
 // Import layouts
 import Footer from "../../layouts/Footer/Footer";
@@ -14,7 +16,10 @@ import project1 from "../../components/images/projects/project1.jpg";
 import coverbook from "../../components/images/projects/coverbook.jpg";
 
 const CategoryDetail = () => {
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+
+  const {currentUser} = useContext(AuthContext);
 
   const staticbooks = [
     {
@@ -174,7 +179,7 @@ const CategoryDetail = () => {
                       >
                         Tutup
                       </button>
-                      {"test" ? (
+                      {currentUser ? (
                         <Link to="/booklist" className="btn btn-primary">
                           Pinjam
                         </Link>
