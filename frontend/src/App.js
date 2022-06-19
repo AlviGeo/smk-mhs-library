@@ -20,20 +20,18 @@ const App = () => {
     <>
         <Routes>
           {/* public routes */}
-          <Route index element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-
-          <Route path="category" exact element={<CategoryDetail />} />
-          <Route path="aboutus" element={<AboutUs />} />
-          <Route path="contact" element={<Contact />} />
-
-          {/* private routes */}
-          <Route path="booklist" element={<UserBookStatus />} />
-          <Route path="bookstatus" element={<BorrowStatus />} />
-          {/* <Route path="information" element={<InformationLink />} /> */}
-          {/* <Route path="admin" element={<AdminDashboard />} /> */}
+          <Route path="/">
+            <Route path="login" element={<Login />}/>
+            <Route index element={<Home />} />
+            <Route path="category">
+              <Route index element={<CategoryDetail />}/>
+            </Route>
+            <Route path="aboutus" element={<AboutUs />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="borrowstatus" element={<BorrowStatus />}>
+              
+            </Route>
+          </Route>
 
           {/* not found routes */}
           <Route path="*" element={<NotFound />} />

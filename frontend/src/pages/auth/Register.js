@@ -1,32 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { register } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match!");
-    }
-
-    try {
-      setError("");
-      setLoading(true);
-      await register(emailRef.current.value, passwordRef.current.value);
-    } catch (err){
-      setError("Failed to create an account", err.message);
-    }
-    setLoading(false);
-  }
 
   return (
     <div>
@@ -42,7 +23,7 @@ const Register = () => {
                       <h3 className="display-4">REGISTER</h3> <br />
 
                       {error && <Alert variant="danger">{error}</Alert>}
-                      <form onSubmit={handleSubmit}>
+                      <form>
                         <div className="form-group mb-3">
                           <input
                             id="email"

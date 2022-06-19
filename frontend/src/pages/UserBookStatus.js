@@ -5,13 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../layouts/Navbar/Navbar";
 import Footer from "../layouts/Footer/Footer";
 
-// Import Auth
-import { useAuth } from "../context/AuthContext";
-
-
 const UserBookStatus = () => {
-  const {currentUser} = useAuth();
-  
   return (
     <div data-dismiss="modal">
       <Navbar />

@@ -192,7 +192,7 @@ const Navbar = ({ children }) => {
                       </li>
                       {"test" ? (
                         <li className="nav-item">
-                          <NavLink to="/bookstatus" className="nav-link">
+                          <NavLink to="/borrowstatus" className="nav-link">
                             Status Pinjam
                           </NavLink>
                         </li>
