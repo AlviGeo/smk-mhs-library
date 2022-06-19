@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import { Routes, Route } from "react-router-dom";
+import React, {useState, useContext} from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-// Import React Router
+// Import Routes
 import Login from "./pages/auth/Login";
 import Home from "./pages/home/Home";
 import CategoryDetail from "./pages/home/CategoryDetail";
@@ -11,10 +11,19 @@ import Contact from "./pages/home/Contact";
 import UserBookStatus from "./pages/UserBookStatus";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/auth/Register";
-import PrivateRoutes from "./routes/PrivateRoutes";
 import BorrowStatus from "./pages/user/BorrowStatus";
 
-const App = () => {
+// Import Context
+import {AuthContext} from "./context/AuthContext";
+
+function App() {
+  const {currentUser} = useContext(AuthContext);
+
+  const RequireAuth = ({children}) => {
+    return currentUser ? children : <Navigate to="/login" />
+  }
+
+  // console.log(currentUser);
 
   return (
     <>
@@ -22,13 +31,14 @@ const App = () => {
           {/* public routes */}
           <Route path="/">
             <Route path="login" element={<Login />}/>
+            <Route path="register" element={<Register />}/>
             <Route index element={<Home />} />
             <Route path="category">
               <Route index element={<CategoryDetail />}/>
             </Route>
             <Route path="aboutus" element={<AboutUs />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="borrowstatus" element={<BorrowStatus />}>
+            <Route path="borrowstatus" element={<RequireAuth><BorrowStatus /></RequireAuth>}>
               
             </Route>
           </Route>

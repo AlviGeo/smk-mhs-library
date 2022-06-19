@@ -1,15 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
+// Import Context
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../../firebase-config";
+import { AuthContext } from "../../context/AuthContext";
+
 function Login() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
-  
+  const {dispatch} = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      const user = userCredential.user;
+      dispatch({type: "LOGIN", payload:user})
+      navigate("/")
+      window.location.reload();
+    }).catch((err) => {setError(true)});
+  }
+
   return (
     <div>
       <div className="container-fluid">
@@ -21,8 +38,8 @@ function Login() {
                 <div className="row">
                   <div className="col-lg-7 col-xl-6 mx-auto">
                     <h3 className="display-4">LOGIN</h3> <br />
-                    {error && <Alert variant="danger">{error}</Alert>}
-                      <form>
+                    {error && <Alert variant="danger">Wrong email or password!</Alert>}
+                      <form onSubmit={handleLogin}>
                         <div className="form-group mb-3">
                           <input
                             type="email"
@@ -30,7 +47,7 @@ function Login() {
                             className="Email form-control rounded-pill border-0 shadow-sm px-4"
                             placeholder="Email address"
                             required
-                            ref={emailRef}
+                            onChange={e=> setEmail(e.target.value)}
                           />
                         </div>
 
@@ -40,13 +57,12 @@ function Login() {
                             className="password form-control rounded-pill border-0 shadow-sm px-4 text-danger"
                             placeholder="Password"
                             required
-                            ref={passwordRef}
+                            onChange={e=> setPassword(e.target.value)}
                           />
                           <br />
                         </div>
 
                         <button
-                          disabled={loading}
                           type="submit"
                           value="login"
                           className="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm"

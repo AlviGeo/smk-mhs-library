@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 
-// Auth
+// Import Context
+import {AuthContext} from "../../context/AuthContext";
 
 // Images
 import logo from "../../components/images/logo-mhs.png";
@@ -9,6 +10,8 @@ import logo from "../../components/images/logo-mhs.png";
 const Navbar = ({ children }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const {currentUser} = useContext(AuthContext);
 
   const style = ({ isActive }) => ({
     fontWeight: isActive ? "bold" : "normal",
@@ -35,26 +38,40 @@ const Navbar = ({ children }) => {
                 <li>
                   <a
                     title="Facebook"
-                    href="https://facebbok.com/themefisher.com"
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <span className="social-icon">
                       <i className="fab fa-facebook-f" />
                     </span>
                   </a>
-                  <a title="Twitter" href="https://twitter.com/themefisher.com">
+                  <a
+                    title="Twitter"
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className="social-icon">
                       <i className="fab fa-twitter" />
                     </span>
                   </a>
                   <a
                     title="Instagram"
-                    href="https://instagram.com/themefisher.com"
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <span className="social-icon">
                       <i className="fab fa-instagram" />
                     </span>
                   </a>
-                  <a title="Linkdin" href="https://github.com/themefisher.com">
+                  <a
+                    title="Linkdin"
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className="social-icon">
                       <i className="fab fa-github" />
                     </span>
@@ -72,7 +89,7 @@ const Navbar = ({ children }) => {
             <div className="logo-area">
               <div className="row align-items-center">
                 <div className="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-                  <a className="d-block" href="index.html">
+                  <a className="d-block" href="/">
                     <img
                       loading="lazy"
                       style={{
@@ -118,12 +135,9 @@ const Navbar = ({ children }) => {
                         </div>
                       </div>
                     </li>
-                    {"test" ? (
+                    {currentUser ? (
                       <li className="header-get-a-quote">
-                        <NavLink
-                          to="/"
-                          className="btn btn-primary"
-                        >
+                        <NavLink to="/" className="btn btn-primary">
                           Logout
                         </NavLink>
                       </li>
@@ -190,7 +204,7 @@ const Navbar = ({ children }) => {
                           Kontak
                         </NavLink>
                       </li>
-                      {"test" ? (
+                      {currentUser ? (
                         <li className="nav-item">
                           <NavLink to="/borrowstatus" className="nav-link">
                             Status Pinjam
