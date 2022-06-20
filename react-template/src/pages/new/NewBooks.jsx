@@ -1,4 +1,4 @@
-import "./newBooks.scss";
+import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
@@ -10,7 +10,7 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { auth, db, storage } from "../../firebase-config"
+import { db, storage } from "../../firebase-config"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
@@ -74,19 +74,15 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
+    
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "books", res.user.uid), {
+      await addDoc(collection(db, "books"), {
         ...data,
         timeStamp: serverTimestamp(),
       });
       navigate(-1)
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 
@@ -131,6 +127,7 @@ const New = ({ inputs, title }) => {
                     type={input.type}
                     placeholder={input.placeholder}
                     onChange={handleInput}
+                    required
                   />
                 </div>
               ))}

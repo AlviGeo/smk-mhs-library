@@ -44,34 +44,34 @@ export const userInputs = [
   
   export const bookInputs = [
     {
-      id: 1,
+      id: "book_title",
       label: "Title",
       type: "text",
-      placeholder: "Apple Macbook Pro",
+      placeholder: "Book Title",
     },
     {
-      id: 2,
+      id: "book_author",
+      label: "Author",
+      type: "text",
+      placeholder: "Book Author",
+    },
+    {
+      id: "book_publisher",
+      label: "Publisher",
+      type: "text",
+      placeholder: "Book Publisher",
+    },
+    {
+      id: "book_description",
       label: "Description",
       type: "text",
-      placeholder: "Description",
+      placeholder: "Book Description",
     },
     {
-      id: 3,
-      label: "Category",
+      id: "book_status",
+      label: "Status",
       type: "text",
-      placeholder: "Computers",
-    },
-    {
-      id: 4,
-      label: "Price",
-      type: "text",
-      placeholder: "100",
-    },
-    {
-      id: 5,
-      label: "Stock",
-      type: "text",
-      placeholder: "in stock",
+      placeholder: "Available/ Not Available",
     },
   ];
   

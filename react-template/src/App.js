@@ -4,7 +4,7 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
-import NewBooks from "./pages/newBooks/NewBooks";
+import NewBooks from "./pages/new/NewBooks";
 import { bookInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 
@@ -16,7 +16,7 @@ import { AuthContext } from "./context/AuthContext";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
@@ -90,7 +90,7 @@ function App() {
                 }
               />
             </Route>
-            
+
             <Route path="booksapproval">
               <Route
                 index
@@ -100,7 +100,7 @@ function App() {
                   </RequireAuth>
                 }
               />
-              </Route>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
