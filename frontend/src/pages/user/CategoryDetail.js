@@ -1,25 +1,40 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 
 // Import Data from Firebase
 import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
-import {db} from "../../firebase-config";
+import {db} from "../../firebase-config"
 
 // Import layouts
 import Footer from "../../layouts/Footer/Footer";
 import Navbar from "../../layouts/Navbar/Navbar";
 import SideNavbar from "../../layouts/Navbar/SideNavbar";
 
+// Import Context
+import {AuthContext} from "../../context/AuthContext";
+
 // Images
 import project1 from "../../components/images/projects/project1.jpg";
 import coverbook from "../../components/images/projects/coverbook.jpg";
+import Modal from "../../components/Modal/Modal";
 
 const CategoryDetail = () => {
-  const [data, setData] = useState([]);
   const navigate = useNavigate();
-
   const {currentUser} = useContext(AuthContext);
+
+  const [books, setBooks] = useState([]);
+  const usersCollectionRef = collection(db, "books");
+
+  useEffect(() => {
+    const getBooks = async () => {
+      const data = await getDocs(usersCollectionRef);
+      console.log(data)
+      setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getBooks();
+  }, []);
+
 
   const staticbooks = [
     {
@@ -97,29 +112,9 @@ const CategoryDetail = () => {
 
             <div className="col-lg-8 mb-5 mb-lg-0 order-0 order-lg-1">
               <div className="row text-center">
-                {staticbooks.map((book) => (
+                {books.map((book) => (
                   <>
-                    <div className="col-lg-4">
-                      <div className="project-img-container">
-                        <img
-                          className="img-fluid book-detail"
-                          src={project1}
-                          alt="project-img"
-                          data-toggle="modal"
-                          data-target="#toggleBook"
-                        />
-                        {/* Description */}
-                        <div className="project-item-info">
-                          <div className="project-item-info-content">
-                            <h3 className="project-item-title"></h3>
-                            <h4 href="projects-single.html">
-                              {book.book_title}
-                            </h4>
-                            <p>Keterangan Buku</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <Modal key={book.id} id={book.id} title={book.book_title} description={book.book_description}/>
                   </>
                 ))}
               </div>

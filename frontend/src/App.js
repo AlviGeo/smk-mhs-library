@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // Import Routes
 import Login from "./pages/auth/Login";
 import Home from "./pages/home/Home";
-import CategoryDetail from "./pages/home/CategoryDetail";
+import CategoryDetail from "./pages/user/CategoryDetail";
 import InformationLink from "./pages/home/InformationLink";
 import AboutUs from "./pages/home/AboutUs";
 import Contact from "./pages/home/Contact";
@@ -33,13 +33,11 @@ function App() {
             <Route path="login" element={<Login />}/>
             <Route path="register" element={<Register />}/>
             <Route index element={<Home />} />
-            <Route path="category">
-              <Route index element={<CategoryDetail />}/>
-            </Route>
+            <Route path="category" element={<CategoryDetail />} />
             <Route path="aboutus" element={<AboutUs />} />
             <Route path="contact" element={<Contact />} />
             <Route path="borrowstatus" element={<RequireAuth><BorrowStatus /></RequireAuth>}>
-              
+            
             </Route>
           </Route>
 
