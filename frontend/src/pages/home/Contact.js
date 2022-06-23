@@ -3,35 +3,44 @@ import Footer from "../../layouts/Footer/Footer";
 import Navbar from "../../layouts/Navbar/Navbar";
 
 // Images
-import profile from "./../../components/images/aboutus.png";
+import profile from "./../../components/images/home/aboutus.png";
+import contactimg from "../../components/images/home/contact.png";
 
 const Contact = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <div className="container d-flex justify-content-center align-content-center mt-5">
-        <h3>Kontak</h3>
-      </div>
-
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-sm-2">
-          <img
-                      loading="lazy"
-                      style={{
-                        width: "200px",
-                        height: "90px",
-                        float: "left"
-                      }}
-                      src={profile}
-                      alt="Multistudi High School"
+      <section id="main-container" className="main-container">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <h3 className="column-title">Contact</h3>
+              <p>
+                Jika ada pertanyaan yang ingin disampaikan bisa menghubungi:
+              </p>
+              <br />
+              <p>No. Telp: xxnxjnf Email : mhs@gmail.com</p>
+            </div>
+            {/* Col end */}
+            <div className="col-lg-6 mt-5 mt-lg-0">
+              <div id="page-slider" className="page-slider small-bg">
+                <div className="item">
+                  <div className="container">
+                    <img
+                      className="float-right"
+                      src={contactimg}
+                      alt="Contact Us"
+                      style={{ width: "500px", height: "280px" }}
                     />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="col-sm-2">lorem ipsum</div>
         </div>
-      </div>
+      </section>
       <Footer />
-    </div>
+    </>
   );
 };
 

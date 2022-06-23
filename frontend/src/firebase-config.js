@@ -3,24 +3,24 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// const {
-//   REACT_APP_FIREBASE_KEY,
-//   REACT_APP_FIREBASE_AUTH_DOMAIN,
-//   REACT_APP_FIREBASE_PROJECT_ID,
-//   REACT_APP_FIREBASE_STORAGE_BUCKET,
-//   REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-//   REACT_APP_FIREBASE_APP_ID,
-//   REACT_APP_FIREBASE_MEASUREMENT_ID,
-// } = process.env;
+const {
+  REACT_APP_FIREBASE_KEY,
+  REACT_APP_FIREBASE_AUTH_DOMAIN,
+  //   REACT_APP_FIREBASE_PROJECT_ID,
+  //   REACT_APP_FIREBASE_STORAGE_BUCKET,
+  //   REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  //   REACT_APP_FIREBASE_APP_ID,
+  //   REACT_APP_FIREBASE_MEASUREMENT_ID,
+} = process.env;
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: REACT_APP_FIREBASE_KEY,
+  authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: "mhs-library-5a9e5",
+  storageBucket: "mhs-library-5a9e5.appspot.com",
+  messagingSenderId: "448861726979",
+  appId: "1:448861726979:web:a0ec65967da1a144cd6136",
+  measurementId: "G-R6DNECQ32R",
 };
 
 const app = initializeApp(firebaseConfig);

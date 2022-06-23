@@ -8,17 +8,17 @@ import { Link } from "react-router-dom";
 import coverbook from "../../components/images/projects/coverbook.jpg";
 
 
-function Modal({ id, title, description, author, publisher, status,img, timestamp, book }) {
+function Modal({ id, title, description, author, publisher, status, img, timestamp, book }) {
   const {currentUser} = useContext(AuthContext);
   return (
-    <div className="col-lg-3 m-2">
-      <div className="project-img-container row">
+    <div className="col-lg-3 m-2" >
+      <div className="project-img-container row" data-toggle="modal" data-target={`#${id}`}>
         <img
           className="img-fluid book-detail"
-          src={project1}
+          src={img}
           alt="project-img"
-          data-toggle="modal"
-          data-target={`#${id}`}
+          
+          
         />
         {/* Description */}
         <div className="project-item-info d-flex mx-auto">

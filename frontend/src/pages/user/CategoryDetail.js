@@ -132,7 +132,7 @@ const CategoryDetail = () => {
                       author={book.book_author}
                       publisher={book.book_publisher}
                       status={book.book_status}
-                      img={book.book_img}
+                      img={book.img}
                       timestamp={book.book_timeStamp}
                       books={book}
                     />

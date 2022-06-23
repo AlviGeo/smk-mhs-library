@@ -6,6 +6,8 @@ import {AuthContext} from "../../context/AuthContext";
 import {auth} from "../../firebase-config";
 import {signOut} from "firebase/auth";
 
+import Swal from 'sweetalert2'
+
 // Images
 import logo from "../../components/images/logo-mhs.png";
 
@@ -17,6 +19,11 @@ const Navbar = ({ children }) => {
     signOut(auth).then(() => {
       authDispatch({type: "LOGOUT", payload: window.localStorage.removeItem("user")})
       navigate("/")
+      Swal.fire(
+        '',
+        'Success Logout!',
+        'success'
+      )
     }).catch((error) => {
       console.log(error)
     });
