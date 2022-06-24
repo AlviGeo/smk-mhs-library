@@ -14,10 +14,10 @@ function Modal({ id, title, description, author, publisher, status, img, timesta
     <div className="col-lg-3 m-2" >
       <div className="project-img-container row" data-toggle="modal" data-target={`#${id}`}>
         <img
-          className="img-fluid book-detail"
+          className="img-fluid book-detail mx-auto"
           src={img}
           alt="project-img"
-          
+          style={{width: "140px", height: "140px"}}
           
         />
         {/* Description */}

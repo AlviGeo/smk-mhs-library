@@ -19,7 +19,7 @@ const Contact = () => {
                 Jika ada pertanyaan yang ingin disampaikan bisa menghubungi:
               </p>
               <br />
-              <p>No. Telp: xxnxjnf Email : mhs@gmail.com</p>
+              <p>No. Telp: xxxxxx Email : mhs@gmail.com</p>
             </div>
             {/* Col end */}
             <div className="col-lg-6 mt-5 mt-lg-0">

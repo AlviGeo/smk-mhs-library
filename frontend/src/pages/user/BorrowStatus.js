@@ -27,18 +27,18 @@ const BorrowStatus = () => {
           <tbody>
             <tr>
               <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
+              <td>Alvi</td>
+              <td>Sudah Dikembalikan</td>
               <td>
                 <Button variant="info" onClick={handleShow}>
-                  Selesai
+                  Detail
                 </Button>
               </td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
+              <td>Users</td>
+              <td>Dalam peminjaman</td>
               <td>
                 <Button variant="info" onClick={handleShow}>
                   Selesai

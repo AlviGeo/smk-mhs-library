@@ -15,7 +15,7 @@ const AboutUs = () => {
             <div className="col-lg-6">
               <h3 className="column-title">Tentang Kami</h3>
               <p>
-                Minim tempor ipsum aliquip in sit veniam incididunt eiusmod nostrud.
+                Diisi sesuai yang diinginkan. minim tempor ipsum aliquip in sit veniam incididunt eiusmod nostrud.
               </p>
               <br />
               <p>Velit laboris reprehenderit id esse minim eu in sint ad enim. Proident quis laboris tempor nulla adipisicing eiusmod deserunt sint sunt sint nisi reprehenderit et quis. Proident occaecat ea duis ullamco minim esse sunt ipsum eiusmod officia.</p>

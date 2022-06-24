@@ -37,7 +37,7 @@ function App() {
             <Route path="aboutus" element={<AboutUs />} />
             <Route path="contact" element={<Contact />} />
             <Route path="borrowstatus" element={<RequireAuth><BorrowStatus /></RequireAuth>}>
-            
+            {/* <Route path="admin" element={<RequireAuth></RequireAuth>} /> */}
             </Route>
           </Route>
 
