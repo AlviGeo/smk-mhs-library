@@ -3,8 +3,7 @@ import Footer from "../../layouts/Footer/Footer";
 import Navbar from "../../layouts/Navbar/Navbar";
 
 // Images
-import profile from "./../../components/images/home/aboutus.png";
-import contactimg from "../../components/images/home/contact.png";
+import contacting from "../../components/images/home/contact1.png"
 
 const Contact = () => {
   return (
@@ -15,11 +14,11 @@ const Contact = () => {
           <div className="row">
             <div className="col-lg-6">
               <h3 className="column-title">Contact</h3>
-              <p>
+              <h5>
                 Jika ada pertanyaan yang ingin disampaikan bisa menghubungi:
-              </p>
-              <br />
-              <p>No. Telp: xxxxxx Email : mhs@gmail.com</p>
+              </h5>
+              <p>No. Telp: xxxxxx </p>
+              <p>Email : mhs@gmail.com</p>
             </div>
             {/* Col end */}
             <div className="col-lg-6 mt-5 mt-lg-0">
@@ -28,7 +27,7 @@ const Contact = () => {
                   <div className="container">
                     <img
                       className="float-right"
-                      src={contactimg}
+                      src={contacting}
                       alt="Contact Us"
                       style={{ width: "500px", height: "280px" }}
                     />

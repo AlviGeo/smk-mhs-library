@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../layouts/Navbar/Navbar";
 
 // Images
-import aboutus from "./../../components/images/home/aboutus.png";
+import aboutus from "../../components/images/home/aboutus1.png";
 import Footer from "../../layouts/Footer/Footer";
 
 const AboutUs = () => {
