@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import project1 from "../images/projects/project1.jpg";
 
 // Import Context
 import {AuthContext} from "../../context/AuthContext";
@@ -71,7 +70,6 @@ function Modal({ id, title, description, author, publisher, status, img, timesta
                           <h4>{title}</h4>
                           <p className="project-cat">Author: {author} </p>
                           <p className="project-cat">Publisher: {publisher}</p>
-                          <p className="project-cat">Date Published: {} </p>
                           <p className="project-cat">Available: {status} </p>
                         </div>
                       </div>

@@ -69,8 +69,8 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="ts-intro">
-                <div id="jumlah-buku" className="text-center">
-                  <h4 style={{ color: "#FEB83C" }}>10000</h4>
+                <div id="jumlah-buku" className="text-center" style={{borderWidth: "thick"}}>
+                  <h4 style={{ color: "#FEB83C"}}>10000</h4>
                   <h3>BUKU</h3>
                 </div>
               </div>
@@ -110,7 +110,7 @@ const Home = () => {
                         aria-expanded="true"
                         aria-controls="collapseOne"
                       >
-                        Visi SMKS Multistudi High School
+                        Visi SMK Multistudi High School
                       </button>
                     </h2>
                   </div>

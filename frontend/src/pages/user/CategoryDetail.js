@@ -17,12 +17,13 @@ import Navbar from "../../layouts/Navbar/Navbar";
 import SideNavbar from "../../layouts/Navbar/SideNavbar";
 
 // Images
-import project1 from "../../components/images/projects/project1.jpg";
 import coverbook from "../../components/images/projects/coverbook.jpg";
 import Modal from "../../components/Modal/Modal";
 
 const CategoryDetail = () => {
   const [books, setBooks] = useState([]);
+  const [searchBooks, setSearchBooks] = useState("")
+
   const usersCollectionRef = collection(db, "books");
 
   useEffect(() => {
@@ -33,7 +34,6 @@ const CategoryDetail = () => {
         snapShot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
-        console.log(list);
         setBooks(list);
       },
       (error) => {
@@ -44,6 +44,12 @@ const CategoryDetail = () => {
       unsub();
     };
   }, []);
+
+  if(books.length === 0) {
+    return (<p>Loading...</p>)
+  }
+
+  console.log(books)
 
   // Dummy data
   const staticbooks = [
@@ -107,7 +113,7 @@ const CategoryDetail = () => {
             <div className="row">
               <div className="col-lg-12">
                 <div className="banner-heading">
-                  <h1 className="banner-title">List Buku</h1>
+                  <h1 className="banner-title">Library</h1>
                 </div>
               </div>
             </div>
@@ -118,11 +124,44 @@ const CategoryDetail = () => {
       <section id="main-container" className="main-container">
         <div className="container">
           <div className="row">
-            <SideNavbar />
+          <div className="col-lg-4 order-1 order-lg-0">
+      <form className="form-inline my-2 my-lg-0">
+        <input
+          className="form-control mr-sm-2"
+          type="search"
+          placeholder="Cari Buku.."
+          aria-label="Search"
+          onChange={event => {setSearchBooks(event.target.value)}}
+        />
+        <button className="btn btn-outline-warning my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+      <div className="sidebar sidebar-left">
+        <div className="widget">
+          <h3 className="widget-title mt-4">Kategori</h3>
+          {books.map((book) => (
+          <ul className="arrow nav nav-tabs">
+            <li>
+              <a href="/#">{book.book_category.toUpperCase()}</a>
+            </li>
+          </ul>
+          ))}
+        </div>
+        
+      </div>
+      {/* Sidebar end */}
+    </div>
 
             <div className="col-lg-8 mb-5 mb-lg-0 order-0 order-lg-1">
               <div className="row text-center justify-content-around">
-                {books.map((book) => (
+                {books.filter((book) => {
+                  if(searchBooks == "")  {
+                    return book 
+                  } else if (book.book_title.toLowerCase().includes(searchBooks.toLowerCase())) {
+                    return book
+                  }
+                }).map((book, key) => (
                   <>
                     <Modal
                       key={book.id}
@@ -136,7 +175,7 @@ const CategoryDetail = () => {
                       timestamp={book.book_timeStamp}
                       books={book}
                     />
-                    {console.log(book)}
+                    {/* {console.log(book)} */}
                   </>
                 ))}
               </div>

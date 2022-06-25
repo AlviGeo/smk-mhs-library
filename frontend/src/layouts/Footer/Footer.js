@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="container">
             <div className="row justify-content-between">
               <div className="col-lg-4 col-md-6 footer-widget footer-about">
-                <h4 style={{ color: "red" }}>MULTISTUDI HIGH SCHOOL</h4>
+                <h4 style={{ color: "#C22F29" }}>MULTISTUDI HIGH SCHOOL</h4>
                 <p>
                   SMK Multistudi High School adalah sebuah institusi pendidikan
                   vokasi yang didirikan pada tahun 2007 dengan fokus inovasi,
@@ -21,7 +21,15 @@ const Footer = () => {
                   <ul>
                     <li>
                       <a
-                        href="https://facebook.com/themefisher"
+                        href="https://wa.me/message/VZUJ34AED3LEF1"
+                        aria-label="Email"
+                      >
+                        <i className="fab fa-whatsapp"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.facebook.com/SMK-MULTISTUDI-HIGH-SCHOOL-BATAM-725746664149136/"
                         aria-label="Facebook"
                       >
                         <i className="fab fa-facebook-f" />
@@ -29,15 +37,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://twitter.com/themefisher"
-                        aria-label="Twitter"
-                      >
-                        <i className="fab fa-twitter" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://instagram.com/themefisher"
+                        href="https://www.instagram.com/smk_multistudi_batam/"
                         aria-label="Instagram"
                       >
                         <i className="fab fa-instagram" />
@@ -45,10 +45,27 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://github.com/themefisher"
-                        aria-label="Github"
+                        href="https://www.youtube.com/channel/UCftjInE04jsLOo3PO-mtsYg"
+                        aria-label="Email"
                       >
-                        <i className="fab fa-github" />
+                        <i className="fab fa-youtube"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://twitter.com/SMK_MHS_BATAM?lang=en"
+                        aria-label="Twitter"
+                      >
+                        <i className="fab fa-twitter" />
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        href="http://humasmhs@multistudi.sch.id/"
+                        aria-label="Email"
+                      >
+                        <i className="fas fa-envelope" />
                       </a>
                     </li>
                   </ul>
@@ -57,16 +74,10 @@ const Footer = () => {
               </div>
               {/* Col end */}
               <div className="col-lg-3 col-md-6 mt-5 mt-lg-0 footer-widget">
-                <h3 className="widget-title">Services</h3>
+                <h3 className="widget-title">Website Sekolah</h3>
                 <ul className="list-arrow">
                   <li>
-                    <a href="service-single.html">Contoh 1</a>
-                  </li>
-                  <li>
-                    <a href="service-single.html">Contoh 2</a>
-                  </li>
-                  <li>
-                    <a href="service-single.html">Contoh 3</a>
+                    <a href="https://multistudi.sch.id/" target="_blank" rel="noreferrer">Official Web</a>
                   </li>
                 </ul>
               </div>
@@ -107,6 +118,6 @@ const Footer = () => {
       {/* Footer end */}
     </div>
   );
-}
+};
 
 export default Footer;

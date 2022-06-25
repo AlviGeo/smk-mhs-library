@@ -4,7 +4,8 @@
 }
 
 .bg-image {
-    background-image: url('https://res.cloudinary.com/dxfq3iotg/image/upload/v1561631318/img-123.jpg');
-    background-size: cover;
+    background-image: url('../images/login.png');
+    background-repeat: no-repeat;
+    background-size: 500px 300px;
     background-position: center center
 }

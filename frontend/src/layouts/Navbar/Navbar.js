@@ -53,48 +53,55 @@ const Navbar = ({ children }) => {
             </div>
             <div className="col-lg-4 col-md-4 top-social text-center text-md-right">
               <ul className="list-unstyled">
-                <li>
-                  <a
-                    title="Facebook"
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="social-icon">
-                      <i className="fab fa-facebook-f" />
-                    </span>
-                  </a>
-                  <a
-                    title="Twitter"
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="social-icon">
-                      <i className="fab fa-twitter" />
-                    </span>
-                  </a>
-                  <a
-                    title="Instagram"
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="social-icon">
-                      <i className="fab fa-instagram" />
-                    </span>
-                  </a>
-                  <a
-                    title="Linkdin"
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="social-icon">
-                      <i className="fab fa-github" />
-                    </span>
-                  </a>
-                </li>
+                    <li>
+                      <a
+                        href="https://wa.me/message/VZUJ34AED3LEF1"
+                        aria-label="Email"
+                      >
+                        <i className="fab fa-whatsapp"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.facebook.com/SMK-MULTISTUDI-HIGH-SCHOOL-BATAM-725746664149136/"
+                        aria-label="Facebook"
+                      >
+                        <i className="fab fa-facebook-f" />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.instagram.com/smk_multistudi_batam/"
+                        aria-label="Instagram"
+                      >
+                        <i className="fab fa-instagram" />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.youtube.com/channel/UCftjInE04jsLOo3PO-mtsYg"
+                        aria-label="Email"
+                      >
+                        <i className="fab fa-youtube"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://twitter.com/SMK_MHS_BATAM?lang=en"
+                        aria-label="Twitter"
+                      >
+                        <i className="fab fa-twitter" />
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        href="http://humasmhs@multistudi.sch.id/"
+                        aria-label="Email"
+                      >
+                        <i className="fas fa-envelope" />
+                      </a>
+                    </li>
               </ul>
             </div>
           </div>
@@ -207,7 +214,7 @@ const Navbar = ({ children }) => {
                           style={style}
                           className="nav-link"
                         >
-                          Kategori
+                          Library
                         </NavLink>
                       </li>
 
