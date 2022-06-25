@@ -125,7 +125,7 @@ jQuery(function ($) {
 				slidesToScroll: 1,
 				autoplay: true,
 				dots: true,
-				speed: 600,
+				speed: 400,
 				arrows: true,
 				prevArrow: '<button type="button" class="carousel-control left" aria-label="carousel-control"><i class="fas fa-chevron-left"></i></button>',
 				nextArrow: '<button type="button" class="carousel-control right" aria-label="carousel-control"><i class="fas fa-chevron-right"></i></button>'
@@ -133,24 +133,6 @@ jQuery(function ($) {
 			$('.banner-carousel.banner-carousel-1').slickAnimation();
 		}
 		bannerCarouselOne();
-
-
-		// banner Carousel Two
-		function bannerCarouselTwo() {
-			$('.banner-carousel.banner-carousel-2').slick({
-				fade: true,
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				autoplay: true,
-				dots: false,
-				speed: 600,
-				arrows: true,
-				prevArrow: '<button type="button" class="carousel-control left" aria-label="carousel-control"><i class="fas fa-chevron-left"></i></button>',
-				nextArrow: '<button type="button" class="carousel-control right" aria-label="carousel-control"><i class="fas fa-chevron-right"></i></button>'
-			});
-		}
-		bannerCarouselTwo();
-
 
 		// pageSlider
 		function pageSlider() {
