@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 
-const SideNavbar = () => {
+const SideNavbar = ({books}) => {
+  const [searchBooks, setSearchBooks] = useState("")
+
   return (
     <div className="col-lg-4 order-1 order-lg-0">
       <form className="form-inline my-2 my-lg-0">
@@ -9,6 +11,7 @@ const SideNavbar = () => {
           type="search"
           placeholder="Cari Buku.."
           aria-label="Search"
+          onChange={event => {setSearchBooks(event.target.value)}}
         />
         <button className="btn btn-outline-warning my-2 my-sm-0" type="submit">
           Search

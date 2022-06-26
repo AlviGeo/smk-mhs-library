@@ -57,6 +57,8 @@ const Navbar = ({ children }) => {
                       <a
                         href="https://wa.me/message/VZUJ34AED3LEF1"
                         aria-label="Email"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <i className="fab fa-whatsapp"></i>
                       </a>
@@ -65,6 +67,8 @@ const Navbar = ({ children }) => {
                       <a
                         href="https://www.facebook.com/SMK-MULTISTUDI-HIGH-SCHOOL-BATAM-725746664149136/"
                         aria-label="Facebook"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <i className="fab fa-facebook-f" />
                       </a>
@@ -73,6 +77,8 @@ const Navbar = ({ children }) => {
                       <a
                         href="https://www.instagram.com/smk_multistudi_batam/"
                         aria-label="Instagram"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <i className="fab fa-instagram" />
                       </a>
@@ -81,6 +87,8 @@ const Navbar = ({ children }) => {
                       <a
                         href="https://www.youtube.com/channel/UCftjInE04jsLOo3PO-mtsYg"
                         aria-label="Email"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <i className="fab fa-youtube"></i>
                       </a>
@@ -89,6 +97,8 @@ const Navbar = ({ children }) => {
                       <a
                         href="https://twitter.com/SMK_MHS_BATAM?lang=en"
                         aria-label="Twitter"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <i className="fab fa-twitter" />
                       </a>
@@ -98,6 +108,8 @@ const Navbar = ({ children }) => {
                       <a
                         href="http://humasmhs@multistudi.sch.id/"
                         aria-label="Email"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <i className="fas fa-envelope" />
                       </a>
