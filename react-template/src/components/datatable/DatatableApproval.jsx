@@ -1,5 +1,5 @@
 import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { bookColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,22 +11,6 @@ const DatatableApproval = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({id: doc.id, ...doc.data()});
-    //       // doc.data() is never undefined for query doc snapshots
-    //       // console.log(doc.id, " => ", doc.data());
-    //     });
-    //     setData(list);
-    //     console.log(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData()
     const unsub = onSnapshot(collection(db, "books"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {
@@ -88,6 +72,7 @@ const DatatableApproval = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        components={{ Toolbar: GridToolbar }}
       />
     </div>
   );

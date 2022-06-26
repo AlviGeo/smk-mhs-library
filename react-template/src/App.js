@@ -91,7 +91,7 @@ function App() {
               />
             </Route>
 
-            <Route path="booksapproval">
+            <Route path="history">
               <Route
                 index
                 element={

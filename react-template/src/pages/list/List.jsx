@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/Navbar"
 import Datatable from "../../components/datatable/Datatable"
 import DatatableBooks from "../../components/datatable/DatatableBooks"
 import DatatableApproval from "../../components/datatable/DatatableApproval";
+import { Outlet } from "react-router-dom"
 
 const getDatatable = () => {
   const route = window.location.pathname;
@@ -12,8 +13,10 @@ const getDatatable = () => {
       return <Datatable />;
     case "/books":
       return <DatatableBooks />;
-    case "/booksapproval":
+    case "/history":
       return <DatatableApproval />;
+    default :
+      return "Not Found"
   }
 };
 
@@ -25,6 +28,7 @@ const List = () => {
         <Navbar/>
         {getDatatable()}
       </div>
+      <Outlet />
     </div>
   )
 }

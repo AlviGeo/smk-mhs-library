@@ -1,5 +1,5 @@
 import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { bookColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -32,6 +32,7 @@ const DatatableBooks = () => {
       snapShot.docs.forEach(doc => {
         list.push({id:doc.id, ...doc.data()});
       })
+      // console.log(list)
       setData(list)
     }, (error) => {
       console.log(error);
@@ -40,6 +41,9 @@ const DatatableBooks = () => {
       unsub();
     }
   }, []);
+
+  const findId = data.find(book => book.id === "fn7Xp1TKu2VZfs0dtXWP")
+  // console.log(findId)
 
 
   const handleDelete = async (id) => {
@@ -59,7 +63,7 @@ const DatatableBooks = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`/books/${params.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -88,6 +92,7 @@ const DatatableBooks = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        components={{ Toolbar: GridToolbar }}
       />
     </div>
   );

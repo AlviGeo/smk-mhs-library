@@ -52,25 +52,25 @@ const Sidebar = () => {
           </li>
           </Link>
 
-          <p className="title">LISTS</p>
+          <p className="title">LIST</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Siswa</span>
             </li>
           </Link>
           <Link to="/books" style={{ textDecoration: "none" }}>
             <li>
               <LibraryBooksIcon className="icon" />
-              <span>Books</span>
+              <span>Buku</span>
             </li>
           </Link>
 
           <p className="title">MANAGE</p>
-          <Link to ="/booksapproval" style={{ textDecoration: "none" }}>
+          <Link to ="/history" style={{ textDecoration: "none" }}>
           <li>
             <ListAltIcon className="icon" />
-            <span>Book status</span>
+            <span>Riwayat Peminjaman Buku</span>
           </li>
           </Link>
 
