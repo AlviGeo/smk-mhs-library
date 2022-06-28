@@ -18,7 +18,7 @@ import { useContext, useEffect } from "react";
 import {auth} from "../../firebase-config";
 import {signOut} from "firebase/auth";
 
-
+import Swal from 'sweetalert2';
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -29,8 +29,17 @@ const Sidebar = () => {
       signOut(auth).then(() => {
         authDispatch({type: "LOGOUT", payload: window.localStorage.removeItem("user")})
         navigate("/login")
+        Swal.fire(
+          '',
+          'Logout Success!',
+          'success'
+        )
       }).catch((error) => {
-        console.log(error)
+        Swal.fire(
+          '',
+          'Failed Logout!',
+          'error'
+        )
       });
     }
     
