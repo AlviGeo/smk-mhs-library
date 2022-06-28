@@ -24,15 +24,6 @@ const Widget = ({ type }) => {
         isMoney: false,
         link: "See all users",
         query: "users",
-        icon: (
-          <PersonOutlinedIcon
-            className="icon"
-            style={{
-              color: "crimson",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-            }}
-          />
-        ),
       };
       break;
     case "order":
