@@ -1,17 +1,18 @@
+import { useEffect, useState } from "react";
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { bookColumns, userRows } from "../../datatablesource";
+import { historyColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import Swal from 'sweetalert2';
 
-import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, where } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const DatatableApproval = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, "books"), (snapShot) => {
+    const unsub = onSnapshot(collection(db, "history"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {
         list.push({id:doc.id, ...doc.data()});
@@ -35,6 +36,26 @@ const DatatableApproval = () => {
     setData(data.filter((item) => item.id !== id));
   };
 
+  const handleUpdate = async (id) => {
+
+    const historyRef = doc(db, "history", id)
+    try {
+      await updateDoc(historyRef, {
+        approved: true,
+        book_status: "Unavailable",
+        status_peminjaman: true
+      })
+      Swal.fire(
+        '',
+        'Book Approved!',
+        'success'
+      )
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
   const actionColumn = [
     {
       field: "action",
@@ -43,14 +64,12 @@ const DatatableApproval = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
+              <div className="viewButton" onClick={() => handleUpdate(params.row.id)}>Approve</div>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              Delete
+              Reject
             </div>
           </div>
         );
@@ -68,7 +87,7 @@ const DatatableApproval = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={bookColumns.concat(actionColumn)}
+        columns={historyColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
