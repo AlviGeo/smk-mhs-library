@@ -1,8 +1,13 @@
-import "./new.scss";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import "./newBook.scss";
+import TextField from "@material-ui/core/TextField";
+import { useNavigate } from "react-router-dom";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+// Import Firebase
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -11,9 +16,9 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db, storage } from "../../firebase-config"
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+
+
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -63,7 +68,16 @@ const New = ({ inputs, title }) => {
     file && uploadFile();
   }, [file]);
 
-  console.log(data);
+  const [category, setCategory] = useState("");
+  const handleCategory = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+    setCategory({...category, [id]: value})
+  }
+
+  console.log(category)
+
+  // console.log(data);
 
   const handleInput = (e) => {
     const id = e.target.id;
@@ -87,7 +101,7 @@ const New = ({ inputs, title }) => {
   };
 
   return (
-    <div className="new">
+    <div className="newBooks">
       <Sidebar />
       <div className="newContainer">
         <Navbar />
@@ -122,7 +136,7 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input
+                  <TextField
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
