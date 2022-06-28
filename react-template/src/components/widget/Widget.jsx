@@ -67,17 +67,9 @@ const Widget = ({ type }) => {
     case "book":
       data = {
         title: "BOOKS",
-        query: "products",
+        query: "books",
         link: "See details",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
+        
       };
       break;
     default:

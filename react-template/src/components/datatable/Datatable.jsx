@@ -4,7 +4,7 @@ import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const Datatable = () => {
@@ -86,9 +86,10 @@ const Datatable = () => {
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
-        rowsPerPageOptions={[9]}
+        rowsPerPageOptions={[5, 10, 20]}
         checkboxSelection
         components={{ Toolbar: GridToolbar }}
+        pagination
       />
     </div>
   );

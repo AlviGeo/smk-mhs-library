@@ -75,3 +75,35 @@ export const bookColumns = [
     },
   },
 ]
+
+
+export const historyColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "history",
+    headerName: "History",
+    width: 230,
+  },
+  {
+    field: "book_author",
+    headerName: "Author",
+    width: 160,
+  },
+  {
+    field: "book_description",
+    headerName: "Description",
+    width: 150,
+  },
+  {
+    field: "book_status",
+    headerName: "Status",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.book_status}`}>
+          {params.row.book_status}
+        </div>
+      );
+    },
+  },
+]

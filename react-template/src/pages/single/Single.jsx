@@ -1,12 +1,30 @@
+import React, {useState} from "react";
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
 
+import {useParams} from "react-router-dom";
+import {db} from "../../firebase-config";
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 const Single = () => {
+  const { bookId } = useParams();
+  const [bookDetails, setBookDetails] = useState('');
+  
+
+  const q = query(collection(db, "books"), where("id", "==", bookId));
+  const querySnapshot = getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+
+
   return (
     <div className="single">
+      {bookId}
       <Sidebar />
       <div className="singleContainer">
         <Navbar />
