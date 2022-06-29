@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
-import Single from "./pages/single/Single";
+import UserDetails from "./pages/UserDetails/userDetails";
 import New from "./pages/new/New";
 import NewBooks from "./pages/new/NewBooks";
 import { bookInputs, userInputs } from "./formSource";
@@ -12,6 +12,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
+import BookDetails from "./pages/BookDetails/BookDetails";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -51,7 +52,7 @@ function App() {
                 path=":userId"
                 element={
                   <RequireAuth>
-                    <Single />
+                    <UserDetails />
                   </RequireAuth>
                 }
               />
@@ -77,7 +78,7 @@ function App() {
                 path=":bookId"
                 element={
                   <RequireAuth>
-                    <Single />
+                    <BookDetails />
                   </RequireAuth>
                 }
               />
