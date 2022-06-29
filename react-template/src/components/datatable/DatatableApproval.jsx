@@ -27,11 +27,29 @@ const DatatableApproval = () => {
   }, []);
 
 
-  const handleDelete = async (id) => {
+  const handleReject = async (id) => {
     try {
-      await deleteDoc(doc(db, "books", id));
+      const rejectApproval = await deleteDoc(doc(db, "history", id));
+      if(rejectApproval) {
+        Swal.fire(
+          '',
+          'Request Rejected!',
+          'success'
+        )
+      } else {
+        Swal.fire(
+          '',
+          'Something went wrong!',
+          'error'
+        )
+      }
+      
     } catch (err) {
-      console.log(err);
+      Swal.fire(
+        '',
+        `${err.message}`,
+        'error'
+      )
     }
     setData(data.filter((item) => item.id !== id));
   };
@@ -67,7 +85,7 @@ const DatatableApproval = () => {
               <div className="viewButton" onClick={() => handleUpdate(params.row.id)}>Approve</div>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleReject(params.row.id)}
             >
               Reject
             </div>
