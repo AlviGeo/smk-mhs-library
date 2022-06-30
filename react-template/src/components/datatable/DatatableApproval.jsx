@@ -29,21 +29,12 @@ const DatatableApproval = () => {
 
   const handleReject = async (id) => {
     try {
-      const rejectApproval = await deleteDoc(doc(db, "history", id));
-      if(rejectApproval) {
-        Swal.fire(
-          '',
-          'Request Rejected!',
-          'success'
-        )
-      } else {
-        Swal.fire(
-          '',
-          'Something went wrong!',
-          'error'
-        )
-      }
-      
+      await deleteDoc(doc(db, "history", id));
+      Swal.fire(
+        '',
+        'Request Rejected!',
+        'success'
+      )
     } catch (err) {
       Swal.fire(
         '',

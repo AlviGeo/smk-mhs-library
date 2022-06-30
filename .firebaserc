@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "mhs-library-5a9e5"
+  },
+  "targets": {
+    "mhs-library-5a9e5": {
+      "hosting": {
+        "admin": [
+          "mhs-library-5a9e5"
+        ],
+        "public": [
+          "multistudi-library"
+        ]
+      }
+    }
+  }
+}

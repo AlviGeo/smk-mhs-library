@@ -5,7 +5,8 @@ import List from "./pages/list/List";
 import UserDetails from "./pages/UserDetails/userDetails";
 import New from "./pages/new/New";
 import NewBooks from "./pages/new/NewBooks";
-import { bookInputs, userInputs } from "./formSource";
+import NewCategories from "./pages/new/NewCategories";
+import { bookInputs, userInputs, categoryInputs } from "./formSource";
 import "./style/dark.scss";
 
 // Context
@@ -39,6 +40,8 @@ function App() {
                 </RequireAuth>
               }
             />
+
+             {/* Users Routes */}
             <Route path="users">
               <Route
                 index
@@ -60,11 +63,13 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={userInputs} title="Add New User" />
+                    <New inputs={userInputs} categories={categoryInputs} title="Add New User" />
                   </RequireAuth>
                 }
               />
             </Route>
+
+            {/* Book Routes */}
             <Route path="books">
               <Route
                 index
@@ -92,6 +97,28 @@ function App() {
               />
             </Route>
 
+            {/* Category Routes */}
+            <Route path="category">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <List />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="new"
+                element={
+                  <RequireAuth>
+                    <NewCategories inputs={categoryInputs} title="Add New Book Category" />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
+
+             {/* History Routes */}
             <Route path="history">
               <Route
                 index

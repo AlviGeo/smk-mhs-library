@@ -47,7 +47,7 @@ const HomeCategory = () => {
 
             <div className="col-12">
               <div className="general-btn text-center">
-                <Link className="btn btn-primary" to="/category">
+                <Link className="btn btn-warning" to="/category">
                   Lihat Lebih Lanjut
                 </Link>
               </div>

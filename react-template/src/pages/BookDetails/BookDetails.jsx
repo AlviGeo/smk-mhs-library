@@ -6,9 +6,11 @@ import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
 import profileImg from "./female-icon.png";
 
+
 import {useParams, Outlet} from "react-router-dom";
 import {db} from "../../firebase-config";
 import { collection, query, where, getDocs, doc, getDoc, documentId } from "firebase/firestore";
+import ModalEditBook from "../../components/ModalEditBook/ModalEditBook";
 
 
 const BookDetails = () => {
@@ -71,9 +73,14 @@ const BookDetails = () => {
                   <span className="itemKey">Book Status</span>
                   <span className="itemValue">{bookDetails.book_status}</span>
                 </div>
+            <div className="right button-edit">
+            <ModalEditBook />
+            </div>
               </div>
             </div>
+            
           </div>
+          
         </div>
       </div>
       <Outlet />

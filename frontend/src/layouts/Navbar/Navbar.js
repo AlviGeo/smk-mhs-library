@@ -2,34 +2,35 @@ import React, { useEffect, useState, useContext } from "react";
 import { NavLink, useNavigate, Navigate } from "react-router-dom";
 
 // Import Context
-import {AuthContext} from "../../context/AuthContext";
-import {auth} from "../../firebase-config";
-import {signOut} from "firebase/auth";
+import { AuthContext } from "../../context/AuthContext";
+import { auth } from "../../firebase-config";
+import { signOut } from "firebase/auth";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 // Images
 import logo from "../../components/images/logo-mhs.png";
 
 const Navbar = ({ children }) => {
-  const {dispatch: authDispatch} = useContext(AuthContext);
+  const { dispatch: authDispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    signOut(auth).then(() => {
-      authDispatch({type: "LOGOUT", payload: window.localStorage.removeItem("user")})
-      navigate("/")
-      Swal.fire(
-        '',
-        'Success Logout!',
-        'success'
-      )
-    }).catch((error) => {
-      console.log(error)
-    });
-  }
+    signOut(auth)
+      .then(() => {
+        authDispatch({
+          type: "LOGOUT",
+          payload: window.localStorage.removeItem("user"),
+        });
+        navigate("/");
+        Swal.fire("", "Success Logout!", "success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const style = ({ isActive }) => ({
     fontWeight: isActive ? "bold" : "normal",
@@ -53,67 +54,67 @@ const Navbar = ({ children }) => {
             </div>
             <div className="col-lg-4 col-md-4 top-social text-center text-md-right">
               <ul className="list-unstyled">
-                    <li>
-                      <a
-                        href="https://wa.me/message/VZUJ34AED3LEF1"
-                        aria-label="Email"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <i className="fab fa-whatsapp"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.facebook.com/SMK-MULTISTUDI-HIGH-SCHOOL-BATAM-725746664149136/"
-                        aria-label="Facebook"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <i className="fab fa-facebook-f" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.instagram.com/smk_multistudi_batam/"
-                        aria-label="Instagram"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <i className="fab fa-instagram" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.youtube.com/channel/UCftjInE04jsLOo3PO-mtsYg"
-                        aria-label="Email"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <i className="fab fa-youtube"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://twitter.com/SMK_MHS_BATAM?lang=en"
-                        aria-label="Twitter"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <i className="fab fa-twitter" />
-                      </a>
-                    </li>
+                <li>
+                  <a
+                    href="https://wa.me/message/VZUJ34AED3LEF1"
+                    aria-label="Email"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/SMK-MULTISTUDI-HIGH-SCHOOL-BATAM-725746664149136/"
+                    aria-label="Facebook"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fa-facebook-f" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/smk_multistudi_batam/"
+                    aria-label="Instagram"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fa-instagram" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/channel/UCftjInE04jsLOo3PO-mtsYg"
+                    aria-label="Email"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fa-youtube"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://twitter.com/SMK_MHS_BATAM?lang=en"
+                    aria-label="Twitter"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fa-twitter" />
+                  </a>
+                </li>
 
-                    <li>
-                      <a
-                        href="http://humasmhs@multistudi.sch.id/"
-                        aria-label="Email"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <i className="fas fa-envelope" />
-                      </a>
-                    </li>
+                <li>
+                  <a
+                    href="http://humasmhs@multistudi.sch.id/"
+                    aria-label="Email"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fas fa-envelope" />
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -174,13 +175,17 @@ const Navbar = ({ children }) => {
                     </li>
                     {currentUser ? (
                       <li className="header-get-a-quote">
-                        <NavLink to="/" onClick={() => handleLogout()} className="btn btn-primary">
+                        <NavLink
+                          to="/"
+                          onClick={() => handleLogout()}
+                          className="btn btn-primary"
+                        >
                           Logout
                         </NavLink>
                       </li>
                     ) : (
                       <li className="header-get-a-quote">
-                        <NavLink to="/login" className="btn btn-primary">
+                        <NavLink to="/login" className="btn btn-warning">
                           Login
                         </NavLink>
                       </li>
@@ -243,15 +248,18 @@ const Navbar = ({ children }) => {
                       </li>
                       {currentUser ? (
                         <li className="nav-item">
-                          <NavLink to="/borrowstatus" className="nav-link">
+                          <NavLink
+                            to={`/borrowstatus/${currentUser.uid}`}
+                            className="nav-link"
+                          >
                             Status Pinjam
                           </NavLink>
                         </li>
                       ) : (
                         <li className="nav-item">
-                          <NavLink to="/admin" className="nav-link">
+                          <a href="https://mhs-library-5a9e5.web.app" target="_blank" rel="noreferrer" className="nav-link">
                             Admin
-                          </NavLink>
+                          </a>
                         </li>
                       )}
                     </ul>

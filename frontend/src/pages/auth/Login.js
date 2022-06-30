@@ -96,18 +96,6 @@ function Login() {
                       >
                         Sign in
                       </button>
-
-                      <div className="text-center d-flex justify-content-between mt-4">
-                        <p>
-                          OR &nbsp;
-                          <Link
-                            to="/register"
-                            className="font-italic text-muted"
-                          >
-                            <u>Create Account</u>
-                          </Link>
-                        </p>
-                      </div>
                     </form>
                   </div>
                 </div>

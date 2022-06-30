@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // Import Routes
@@ -14,38 +14,44 @@ import Register from "./pages/auth/Register";
 import BorrowStatus from "./pages/user/BorrowStatus";
 
 // Import Context
-import {AuthContext} from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
-  const RequireAuth = ({children}) => {
-    return currentUser ? children : <Navigate to="/login" />
-  }
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
+  };
 
   // console.log(currentUser);
 
   return (
     <>
-        <Routes>
-          {/* public routes */}
-          <Route path="/">
-            <Route path="login" element={<Login />}/>
-            <Route path="register" element={<Register />}/>
-            <Route index element={<Home />} />
-            <Route path="category" element={<CategoryDetail />} />
-            <Route path="aboutus" element={<AboutUs />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="borrowstatus" element={<RequireAuth><BorrowStatus /></RequireAuth>}>
-            {/* <Route path="admin" element={<RequireAuth></RequireAuth>} /> */}
-            </Route>
+      <Routes>
+        {/* public routes */}
+        <Route path="/">
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route index element={<Home />} />
+          <Route path="category" element={<CategoryDetail />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route
+            path="borrowstatus/:id"
+            element={
+              <RequireAuth>
+                <BorrowStatus />
+              </RequireAuth>
+            }
+          >
           </Route>
+        </Route>
 
-          {/* not found routes */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        {/* not found routes */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
-};
+}
 
 export default App;

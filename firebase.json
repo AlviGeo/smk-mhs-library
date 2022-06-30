@@ -1,0 +1,17 @@
+{
+  "hosting": [{
+    "target": "admin",
+    "public": "react-template/build"
+  }, {
+    "target": "public",
+    "public": "frontend/build"
+  },
+  {
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+]
+}

@@ -11,6 +11,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import CategoryIcon from '@mui/icons-material/Category';
 import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import {AuthContext} from "../../context/AuthContext";
@@ -72,6 +73,12 @@ const Sidebar = () => {
             <li>
               <LibraryBooksIcon className="icon" />
               <span>Buku</span>
+            </li>
+          </Link>
+          <Link to="/category" style={{ textDecoration: "none" }}>
+            <li>
+              <CategoryIcon className="icon" />
+              <span>Category</span>
             </li>
           </Link>
 
