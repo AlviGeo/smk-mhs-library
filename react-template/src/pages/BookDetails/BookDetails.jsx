@@ -10,7 +10,7 @@ import profileImg from "./female-icon.png";
 import {useParams, Outlet} from "react-router-dom";
 import {db} from "../../firebase-config";
 import { collection, query, where, getDocs, doc, getDoc, documentId } from "firebase/firestore";
-import ModalEditBook from "../../components/ModalEditBook/ModalEditBook";
+import ModalEditBook from "../../components/ModalEdit/ModalEditBook";
 
 
 const BookDetails = () => {

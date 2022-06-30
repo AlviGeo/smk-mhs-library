@@ -6,6 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
+// Date Formating
+import moment from "moment";
+
 // Import Firebase
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import {
@@ -24,17 +27,17 @@ const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
+  const [category, setCategory] = useState("");
+  // const [dropdown, setDropdown] = useState()
   const navigate = useNavigate()
 
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
 
-      console.log(name);
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
       <h1>
-        
       </h1>
 
       uploadTask.on(
@@ -68,16 +71,17 @@ const New = ({ inputs, title }) => {
     file && uploadFile();
   }, [file]);
 
-  const [category, setCategory] = useState("");
-  const handleCategory = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
-    setCategory({...category, [id]: value})
-  }
+  const handleDropdownCategory = (event) => {
+    console.log(event.target.value)
+    setCategory(event.target.value);
+  };
 
-  console.log(category)
-
-  // console.log(data);
+  
+  // const handleCategory = (e) => {
+  //   const id = e.target.id;
+  //   const value = e.target.value;
+  //   setCategory({...category, [id]: value})
+  // }
 
   const handleInput = (e) => {
     const id = e.target.id;
@@ -91,8 +95,8 @@ const New = ({ inputs, title }) => {
     
     try {
       await addDoc(collection(db, "books"), {
-        ...data,
-        timeStamp: serverTimestamp(),
+        ...data, category,
+        timeStamp: moment().format('YYYY-MM-DD'),
       });
       navigate(-1)
     } catch (err) {
@@ -136,17 +140,36 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <TextField
+                  {input.type === "text" || input.type == "number" ? <input
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
                     onChange={handleInput}
                     required
-                  />
+                  /> :  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                  <InputLabel id="demo-select-small" >Kategori</InputLabel>
+                  <Select
+                    type={input.type}
+                    value={category}
+                    placeholder={input.placeholder}
+                    onChange={handleDropdownCategory}
+                    required
+                    styles={{paddingRight: "100px"}}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={"Teknologi"}>Teknologi</MenuItem>
+                    <MenuItem value={"Agama"}>Agama</MenuItem>
+                    <MenuItem value={"Keuangan"}>Keuangan</MenuItem>
+                    <MenuItem value={"Lainnya"}>Lainnya</MenuItem>
+                  </Select>
+                </FormControl>} 
+                
                 </div>
               ))}
               <button disabled={per !== null && per < 100} type="submit">
-                Send
+                Tambah
               </button>
             </form>
           </div>
