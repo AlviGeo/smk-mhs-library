@@ -174,15 +174,7 @@ const Navbar = ({ children }) => {
                       </div>
                     </li>
                     {currentUser ? (
-                      <li className="header-get-a-quote">
-                        <NavLink
-                          to="/"
-                          onClick={() => handleLogout()}
-                          className="btn btn-primary"
-                        >
-                          Logout
-                        </NavLink>
-                      </li>
+                      <></>
                     ) : (
                       <li className="header-get-a-quote">
                         <NavLink to="/login" className="btn btn-warning">
@@ -214,6 +206,7 @@ const Navbar = ({ children }) => {
                   >
                     <span className="navbar-toggler-icon" />
                   </button>
+                  
                   <div
                     id="navbar-collapse"
                     className="collapse navbar-collapse"
@@ -263,6 +256,17 @@ const Navbar = ({ children }) => {
                         </li>
                       )}
                     </ul>
+                    {currentUser ? (
+                    <ul class="nav navbar-nav ml-auto">
+                    <NavLink
+                      to="/"
+                      onClick={() => handleLogout()}
+                      className="btn btn-danger btn-sm"
+                    >
+                      Logout
+                    </NavLink></ul> ) : 
+                        <></>
+                    }
                   </div>
                 </nav>
               </div>

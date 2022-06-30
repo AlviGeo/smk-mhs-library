@@ -22,7 +22,7 @@ export const userInputs = [
 export const bookInputs = [
   {
     id: "book_title",
-    label: "Title",
+    label: "Judul",
     type: "text",
     placeholder: "Book Title",
   },
@@ -34,20 +34,30 @@ export const bookInputs = [
   },
   {
     id: "book_description",
-    label: "Description",
+    label: "Deskripsi",
     type: "text",
     placeholder: "Book Description",
   },
   {
     id: "book_category",
-    label: "Category",
-    type: "text",
+    label: "Kategori",
+    type: "button",
     placeholder: "Teknologi/ Bahasa/ Agama",
   },
   {
-    id: "book_status",
-    label: "Status",
-    type: "text",
-    placeholder: "Available/ Not Available",
+    id: "book_total",
+    label: "Jumlah",
+    type: "number",
+    placeholder: "None",
   },
 ];
+
+
+export const categoryInputs = [
+  {
+    id: "category_name",
+    label: "Nama Kategori",
+    type: "text",
+    placeholder: "Kategori...",
+  },
+]

@@ -1,5 +1,5 @@
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 200},
+  { field: "id", headerName: "ID", width: 200 },
   // {
   //   field: "user",
   //   headerName: "User",
@@ -51,22 +51,30 @@ export const bookColumns = [
     width: 150,
   },
   {
-    field: "book_status",
-    headerName: "Status",
+    field: "book_total",
+    headerName: "Jumlah",
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.book_status}`}>
-          {params.row.book_status}
+        <div className={`cellWithStatus ${params.row.book_total}`}>
+          {params.row.book_total}
         </div>
       );
     },
   },
+];
+
+export const categoryColumns = [
+  { field: "id", headerName: "ID", width: 150 },
+  {
+    field: "category_name",
+    headerName: "Nama Kategori",
+    width: 230,
+  },
 ]
 
-
 export const historyColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 150 },
   {
     field: "book_title",
     headerName: "Judul",
@@ -78,13 +86,13 @@ export const historyColumns = [
     width: 150,
   },
   {
-    field: "book_status",
-    headerName: "Status",
+    field: "book_total",
+    headerName: "Jumlah Buku",
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.book_status}`}>
-          {params.row.book_status}
+        <div className={`cellWithStatus ${params.row.book_total}`}>
+          {params.row.book_total}
         </div>
       );
     },
@@ -94,33 +102,33 @@ export const historyColumns = [
     headerName: "Status Approval",
     width: 160,
   },
-]
+];
 
 export const dashboardColumns = [
-  { field: 'id', headerName: 'ID', width: 150 },
-    {
-      field: 'book_title',
-      headerName: 'Judul',
-      width: 170,
-      editable: true,
-    },
-    {
-      field: 'username',
-      headerName: 'Nama Siswa',
-      width: 200,
-      editable: true,
-    },
-    {
-      field: 'book_status',
-      headerName: 'Status Buku',
-      width: 200,
-      editable: true,
-    },
-    {
-      field: 'timeStamp',
-      headerName: 'Lama Peminjaman',
-      width: 200,
-      valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    },
-]
+  { field: "id", headerName: "ID", width: 150 },
+  {
+    field: "book_title",
+    headerName: "Judul",
+    width: 170,
+    editable: true,
+  },
+  {
+    field: "username",
+    headerName: "Nama Siswa",
+    width: 200,
+    editable: true,
+  },
+  {
+    field: "book_status",
+    headerName: "Status Buku",
+    width: 200,
+    editable: true,
+  },
+  {
+    field: "timeStamp",
+    headerName: "Lama Peminjaman",
+    width: 200,
+    valueGetter: (params) =>
+      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+  },
+];
