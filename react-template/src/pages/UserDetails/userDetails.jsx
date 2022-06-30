@@ -10,6 +10,7 @@ import Input from '@mui/material/Input';
 import {useParams, Outlet} from "react-router-dom";
 import {db} from "../../firebase-config";
 import { collection, query, where, getDocs, doc, getDoc, documentId } from "firebase/firestore";
+import ModalEditUser from "../../components/ModalEdit/ModalEditUser";
 
 
 const UserDetails = () => {
@@ -58,6 +59,9 @@ const UserDetails = () => {
                   <span className="itemKey">Email:</span>
                   <span className="itemValue">{userDetails.email}</span>
                 </div>
+              <div className="right button-edit">
+            <ModalEditUser />
+            </div>
               </div>
             </div>
           </div>
