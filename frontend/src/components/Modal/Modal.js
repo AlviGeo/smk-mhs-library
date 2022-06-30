@@ -23,8 +23,6 @@ import Swal from "sweetalert2";
 // Date Formating
 import moment from "moment";
 
-import coverbook from "../../components/images/projects/coverbook.jpg";
-
 function Modal({
   id,
   title,
@@ -54,7 +52,7 @@ function Modal({
           book_id: id,
           book_title: title,          
           status_peminjaman: false,
-          approved: false,
+          approved: "waiting",
           timeStamp: moment().format('YYYY-MM-DD'),
         });
         if (!sendRequest) {
@@ -144,7 +142,7 @@ function Modal({
                 </button>
                 {currentUser && bookTotal>=1 ? (
                   <button type="submit" className="btn btn-primary">
-                    Pinjam
+                    Request
                   </button>
                 ) : (
                   <></>

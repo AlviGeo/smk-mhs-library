@@ -2,10 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { AuthContext, AuthContextProvider } from "./context/AuthContext";
-
-// Import React Router
 import { BrowserRouter } from "react-router-dom";
+import { AuthContext, AuthContextProvider } from "./context/AuthContext";
+import moment from 'moment';
+moment().format();
+
 
 ReactDOM.render(
   <React.StrictMode>

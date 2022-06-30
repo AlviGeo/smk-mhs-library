@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../../components/css/CategoryDetail.css";
 
 // Import Data from Firebase
 import {
   collection,
   getDocs,
+  addDoc,
   deleteDoc,
   doc,
   onSnapshot,
+  query,
+  where
 } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
@@ -22,11 +26,25 @@ import Modal from "../../components/Modal/Modal";
 
 const CategoryDetail = () => {
   const [books, setBooks] = useState([]);
-  const [searchBooks, setSearchBooks] = useState("")
-
-  const usersCollectionRef = collection(db, "books");
+  const [searchBooksTitle, setSearchBooksTitle] = useState("")
+  const [categories, setCategory] = useState([]);
 
   useEffect(() => {
+
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "category"));
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()});
+        });
+        setCategory(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData()
+
     const unsub = onSnapshot(
       collection(db, "books"),
       (snapShot) => {
@@ -45,11 +63,18 @@ const CategoryDetail = () => {
     };
   }, []);
 
+  // const handleSearchBooksByCategory = (e) => {
+  //   console.log(e.target.value)
+  //   if(e.target.value==="All") {
+  //     setSearchBooksCategory(e.target.value)
+  //   } else if (e.target.value==="Teknologi") {
+  //     setSearchBooksCategory(e.target.value.filter(book => book.book_category===e.target.value))
+  //   }
+  // }
+
   if(books.length === 0) {
     return (<p>Loading...</p>)
   }
-
-  console.log(books)
 
   // Dummy data
   const staticbooks = [
@@ -131,7 +156,7 @@ const CategoryDetail = () => {
           type="search"
           placeholder="Cari Buku.."
           aria-label="Search"
-          onChange={event => {setSearchBooks(event.target.value)}}
+          onChange={event => {setSearchBooksTitle(event.target.value)}}
         />
         <button className="btn btn-outline-warning my-2 my-sm-0" type="submit">
           Search
@@ -140,13 +165,19 @@ const CategoryDetail = () => {
       <div className="sidebar sidebar-left">
         <div className="widget">
           <h3 className="widget-title mt-4">Kategori</h3>
-          {books.map((book) => (
+          {categories.map((category) => (
           <ul className="arrow nav nav-tabs">
             <li>
-              <a href="/#">{book.book_category.toUpperCase()}</a>
+              <a href="/#">{category.category_name}</a>
+              {/* <a href="/#">Sementara</a> */}
             </li>
           </ul>
           ))}
+          {/* <ul className="arrow nav nav-tabs category-filter fs-2">
+            <button value="Teknologi" type="button" className="btn btn-link " styles={{color: "#FEB83C", textDecoration: "none"}} onClick={handleSearchBooksByCategory}>test</button>
+            <button value="Self Development" type="button" className="btn btn-link " styles={{color: "#FEB83C", textDecoration: "none"}} onClick={handleSearchBooksByCategory}>Self Development</button>
+            <button value="Bahasa" type="button" className="btn btn-link " styles={{color: "#FEB83C", textDecoration: "none"}} onClick={handleSearchBooksByCategory}>Bahasa</button>
+          </ul> */}
         </div>
         
       </div>
@@ -156,26 +187,25 @@ const CategoryDetail = () => {
             <div className="col-lg-8 mb-5 mb-lg-0 order-0 order-lg-1">
               <div className="row text-center justify-content-around">
                 {books.filter((book) => {
-                  if(searchBooks == "")  {
+                  if(searchBooksTitle === "")  {
                     return book 
-                  } else if (book.book_title.toLowerCase().includes(searchBooks.toLowerCase())) {
+                  } else if (book.book_title.toLowerCase().includes(searchBooksTitle.toLowerCase())) {
                     return book
-                  }
+                  } 
                 }).map((book, key) => (
                   <>
                     <Modal
-                      key={book.id}
+                      key={key}
                       id={book.id}
                       title={book.book_title}
                       description={book.book_description}
                       author={book.book_author}
                       publisher={book.book_publisher}
-                      status={book.book_status}
+                      total={book.book_total}
                       img={book.img}
                       timestamp={book.book_timeStamp}
                       books={book}
                     />
-                    {/* {console.log(book)} */}
                   </>
                 ))}
               </div>

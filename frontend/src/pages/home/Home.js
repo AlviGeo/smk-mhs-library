@@ -1,13 +1,44 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import HomeCategory from "../../layouts/CategoryHome";
 import Navbar from "../../layouts/Navbar/Navbar";
 import Footer from "../../layouts/Footer/Footer";
 import "../../components/css/landing-page.css";
 
+// Import Data from Firebase
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  where
+} from "firebase/firestore";
+import { db } from "../../firebase-config";
+
 // Import image
 import containerImage1 from "../../components/images/home/landing-page-img.png";
 
 const Home = () => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "books"));
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()});
+        });
+        setBooks(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData()
+  }, [])
+
   return (
     <>
       <Navbar />
@@ -70,14 +101,14 @@ const Home = () => {
             <div className="col-lg-6">
               <div className="ts-intro">
                 <div id="jumlah-buku" className="text-center" style={{borderWidth: "thick"}}>
-                  <h4 style={{ color: "#FEB83C"}}>10000</h4>
-                  <h3>BUKU</h3>
+                  <h3>Jumlah Buku</h3>
+                  <h4 style={{ color: "#FEB83C"}}>{books.length}</h4>
                 </div>
               </div>
               {/* Intro box end */}
               <div className="gap-20" />
               <iframe
-                width={420}
+                width={520}
                 height={315}
                 title="Multistudi High School"
                 src="https://www.youtube.com/embed/BTRbdaRhWng"
