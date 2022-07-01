@@ -1,8 +1,11 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import moment from "moment";
+import { AuthContext } from "../../context/AuthContext";
 import "./table.scss";
+
+// Material UI 
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Box from '@mui/material/Box';
-
 import { dashboardColumns, userRows } from "../../datatablesource";
 
 // Import Firebase
@@ -63,12 +66,38 @@ const List = () => {
   //   },
   // ];
 
+  const { currentUser } = useContext(AuthContext);
+  // console.log(currentUser)
+
   const [data, setData] = useState([]);
+  const [student, setStudents] = useState([]);
+  const getCurrentDate =  moment().format("YYYY-MM-DD")
+  const getLastMonth = moment().subtract(1, 'months').format('YYYY-MM-DD');
+
+  // console.log(data[0].user_id)
 
   useEffect(() => {
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const studentRef = await getDocs(collection(db, "users"));
+        // const q = await getDocs(collection(db, "users"));
+        const querySnapshot = query(studentRef, where("user_id", "===", currentUser.uid))
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()});
+        });
+        setStudents(list);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchData()
+
     const historyRef = collection(db, "history");
-    const q = query(historyRef, where("status_peminjaman", "==", true))
-    const unsub = onSnapshot(q, (snapShot) => {
+    const q = query(historyRef, where("timeStamp", "<=", getCurrentDate), where("timeStamp", ">", getLastMonth))
+    const q2 = query(historyRef, where("status_peminjaman", "==", true), where("approved", "==", "approved"))
+    
+    const unsub = onSnapshot(q2, (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {
         list.push({id:doc.id, ...doc.data()});

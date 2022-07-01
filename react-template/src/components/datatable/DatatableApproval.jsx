@@ -11,19 +11,32 @@ import {db} from "../../firebase-config"
 const DatatableApproval = () => {
   const [data, setData] = useState([]);
 
+  
+
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, "history"), (snapShot) => {
+    const fetchHistory = async () => {
       let list = [];
-      snapShot.docs.forEach(doc => {
-        list.push({id:doc.id, ...doc.data()});
-      })
-      setData(list)
-    }, (error) => {
-      console.log(error);
-    })
-    return () => {
-      unsub();
+      try {
+        const historyRef = collection(db, "history");
+        const querySnapshot = query(historyRef, where("approved", "==", "waiting"))
+        const unsub = onSnapshot(querySnapshot, (snapShot) => {
+          let list = [];
+          snapShot.docs.forEach(doc => {
+            list.push({id:doc.id, ...doc.data()});
+          })
+          setData(list)
+        }, (error) => {
+          console.log(error);
+        })
+        return () => {
+          unsub();
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
     }
+    fetchHistory();
+    
   }, []);
 
 
@@ -48,9 +61,10 @@ const DatatableApproval = () => {
   const handleUpdate = async (id) => {
 
     const historyRef = doc(db, "history", id)
+    // const booksRef = doc(db, )
     try {
       await updateDoc(historyRef, {
-        approved: true,
+        approved: "approved",
         book_status: "Unavailable",
         status_peminjaman: true
       })
@@ -88,7 +102,7 @@ const DatatableApproval = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Approval List
+        List Riwayat
       </div>
       <DataGrid
         className="datagrid"
