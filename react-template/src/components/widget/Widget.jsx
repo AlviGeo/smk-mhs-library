@@ -58,6 +58,7 @@ const Widget = ({ type }) => {
     case "book":
       data = {
         title: "BOOKS",
+        isMoney: false,
         query: "books",
         link: "See details",
         
@@ -76,9 +77,9 @@ const Widget = ({ type }) => {
       // april
       const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2))
 
-      const lastMonthQuery = query(collection(db, data.query), where("timeStamp", "<=", today), where("timeStamp", ">", lastMonth))
+      const lastMonthQuery = query(collection(db, data.query))
 
-      const prevMonthQuery = query(collection(db, data.query), where("timeStamp", "<=", lastMonth), where("timeStamp", ">", prevMonth));
+      const prevMonthQuery = query(collection(db, data.query));
 
       const lastMonthData = await getDocs(lastMonthQuery);
       const prevMonthData = await getDocs(prevMonthQuery);
@@ -99,14 +100,7 @@ const Widget = ({ type }) => {
         <span className="counter">
           {data.isMoney && "$"} {amount}
         </span>
-        <span className="link">{data.link}</span>
-      </div>
-      <div className="right">
-        <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
-          {diff < 0 ? <KeyboardArrowDownIcon/> : <KeyboardArrowUpIcon />}
-          {diff} %
-        </div>
-        {data.icon}
+        <span className="link"></span>
       </div>
     </div>
   );
