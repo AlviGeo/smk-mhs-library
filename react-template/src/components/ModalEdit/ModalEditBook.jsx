@@ -169,14 +169,14 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
                     size="small"
                     />
             </Grid>
-            <Grid item xs={8}><p className="itemKey">Foto</p>
+            {/* <Grid item xs={8}><p className="itemKey">Foto</p>
                     <TextField
                     type="file"
                     onChange={(e) => setImage(e.target.files[0])}
                     name="description"
                     size="small"
                     />
-            </Grid>
+            </Grid> */}
           </Grid>
           <br />
           <div className="button">

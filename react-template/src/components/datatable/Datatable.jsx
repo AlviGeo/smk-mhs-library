@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 
 import { collection, getDocs, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import {db} from "../../firebase-config"
@@ -45,6 +46,11 @@ const Datatable = () => {
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "users", id));
+      Swal.fire(
+        '',
+        'Data Berhasil di Hapus!',
+        'success'
+      )
     } catch (err) {
       console.log(err);
     }
