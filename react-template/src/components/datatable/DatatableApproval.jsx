@@ -88,10 +88,7 @@ const DatatableApproval = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Book List
-        <Link to="/books/new" className="link">
-          Add New
-        </Link>
+        Approval List
       </div>
       <DataGrid
         className="datagrid"

@@ -68,7 +68,7 @@ const DatatableCategory = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Book List
+        Category List
         <Link to="/category/new" className="link">
           Add New
         </Link>
@@ -77,8 +77,8 @@ const DatatableCategory = () => {
         className="datagrid"
         rows={data}
         columns={categoryColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={10}
+        rowsPerPageOptions={[5, 10, 20]}
         checkboxSelection
         components={{ Toolbar: GridToolbar }}
       />
