@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 // Import components
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -18,7 +19,6 @@ import {
 } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase-config"
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
 
 
 const New = ({ inputs, title }) => {
@@ -49,7 +49,7 @@ const New = ({ inputs, title }) => {
       );
       await setDoc(doc(db, "users", res.user.uid), {
         ...data,
-        timeStamp: serverTimestamp(),
+        timeStamp: moment().format("YYYY-MM-DD"),
       });
       Swal.fire(
         '',

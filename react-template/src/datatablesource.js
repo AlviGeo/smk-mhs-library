@@ -47,12 +47,12 @@ export const bookColumns = [
   },
   {
     field: "book_description",
-    headerName: "Description",
+    headerName: "Deskripsi",
     width: 150,
   },
   {
     field: "book_total",
-    headerName: "Jumlah",
+    headerName: "Jumlah Tersedia",
     width: 160,
     renderCell: (params) => {
       return (
@@ -81,26 +81,14 @@ export const historyColumns = [
     width: 230,
   },
   {
-    field: "username",
+    field: "user_name",
     headerName: "Nama Siswa",
-    width: 150,
-  },
-  {
-    field: "book_total",
-    headerName: "Jumlah Buku",
-    width: 160,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.book_total}`}>
-          {params.row.book_total}
-        </div>
-      );
-    },
+    width: 200,
   },
   {
     field: "approved",
     headerName: "Status Approval",
-    width: 160,
+    width: 200,
   },
 ];
 
@@ -108,27 +96,21 @@ export const dashboardColumns = [
   { field: "id", headerName: "ID", width: 150 },
   {
     field: "book_title",
-    headerName: "Judul",
+    headerName: "Judul Buku",
     width: 170,
     editable: true,
   },
   {
-    field: "username",
+    field: "user_name",
     headerName: "Nama Siswa",
     width: 200,
     editable: true,
   },
   {
-    field: "book_status",
-    headerName: "Status Buku",
-    width: 200,
-    editable: true,
-  },
-  {
     field: "timeStamp",
-    headerName: "Lama Peminjaman",
+    headerName: "Kapan Pinjam",
     width: 200,
-    valueGetter: (params) =>
-      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    // valueGetter: (params) =>
+    //   `${params.row.firstName || ""} ${params.row.lastName || ""}`,
   },
 ];

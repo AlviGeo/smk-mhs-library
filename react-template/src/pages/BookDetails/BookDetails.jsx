@@ -7,6 +7,8 @@ import List from "../../components/table/Table";
 import profileImg from "./female-icon.png";
 
 
+
+
 import {useParams, Outlet} from "react-router-dom";
 import {db} from "../../firebase-config";
 import { collection, query, where, getDocs, doc, getDoc, documentId } from "firebase/firestore";
@@ -25,7 +27,7 @@ const BookDetails = () => {
 
       if (docSnap.exists()) {
       // console.log("Document data:", docSnap.data());
-      setBookDetails(docSnap.data());
+      setBookDetails({id: docSnap.id, ...docSnap.data()});
       } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -67,14 +69,24 @@ const BookDetails = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Category</span>
-                  <span className="itemValue">{bookDetails.book_category}</span>
+                  <span className="itemValue">{bookDetails.category}</span>
                 </div>
-                <div className="detailItem">
-                  <span className="itemKey">Book Status</span>
-                  <span className="itemValue">{bookDetails.book_status}</span>
-                </div>
+                <br />
             <div className="right button-edit">
-            <ModalEditBook />
+              
+            <ModalEditBook 
+              bookTitle={bookDetails.book_title} 
+              bookAuthor={bookDetails.book_author} 
+              bookDescription={bookDetails.book_description} 
+              bookCategory={bookDetails.category}
+              bookPublisher={bookDetails.book_publisher}
+              bookStatus={bookDetails.book_status}
+              bookImage={bookDetails.img} 
+              bookDetails={bookDetails}
+              bookTotal={bookDetails.book_total}
+              key={bookDetails.id}
+              id={bookDetails.id}
+              />
             </div>
               </div>
             </div>

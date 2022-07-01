@@ -33,10 +33,11 @@
             gap: 100px;
   
             .itemImg {
-              width: 100px;
-              height: 100px;
-              border-radius: 50%;
+              width: 200px;
+              height: 220px;
+              // border-radius: 50%;
               object-fit: cover;
+              padding-left: 40px
             }
   
             .details {

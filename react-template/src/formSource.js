@@ -33,22 +33,28 @@ export const bookInputs = [
     placeholder: "Book Author",
   },
   {
+    id: "book_publisher",
+    label: "Publisher",
+    type: "text",
+    placeholder: "Book Publisher"
+  },
+  {
     id: "book_description",
     label: "Deskripsi",
     type: "text",
     placeholder: "Book Description",
   },
   {
-    id: "book_category",
-    label: "Kategori",
-    type: "button",
-    placeholder: "Teknologi/ Bahasa/ Agama",
-  },
-  {
     id: "book_total",
     label: "Jumlah",
     type: "number",
     placeholder: "None",
+  },
+  {
+    id: "book_category",
+    label: "Kategori",
+    type: "button",
+    placeholder: "Teknologi/ Bahasa/ Agama",
   },
 ];
 

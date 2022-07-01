@@ -33,9 +33,9 @@ const New = ({ inputs, title }) => {
 
   useEffect(() => {
     const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
+      const name = new Date().getTime() + "_" + file.name;
 
-      const storageRef = ref(storage, file.name);
+      const storageRef = ref(storage, `images/${name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
       <h1>
       </h1>
