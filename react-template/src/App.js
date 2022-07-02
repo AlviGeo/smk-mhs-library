@@ -63,7 +63,7 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={userInputs} categories={categoryInputs} title="Add New User" />
+                    <New inputs={userInputs} title="Add New User" />
                   </RequireAuth>
                 }
               />
@@ -91,7 +91,7 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <NewBooks inputs={bookInputs} title="Add New Book" />
+                    <NewBooks inputs={bookInputs} categories={categoryInputs} title="Add New Book" />
                   </RequireAuth>
                 }
               />
