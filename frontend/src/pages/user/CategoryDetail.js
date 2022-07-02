@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import "../../components/css/CategoryDetail.css";
 
 // Import Data from Firebase
@@ -18,10 +17,8 @@ import { db } from "../../firebase-config";
 // Import layouts
 import Footer from "../../layouts/Footer/Footer";
 import Navbar from "../../layouts/Navbar/Navbar";
-import SideNavbar from "../../layouts/Navbar/SideNavbar";
 
 // Images
-import coverbook from "../../components/images/projects/coverbook.jpg";
 import Modal from "../../components/Modal/Modal";
 
 const CategoryDetail = () => {
@@ -63,15 +60,7 @@ const CategoryDetail = () => {
     };
   }, []);
 
-  // const handleSearchBooksByCategory = (e) => {
-  //   console.log(e.target.value)
-  //   if(e.target.value==="All") {
-  //     setSearchBooksCategory(e.target.value)
-  //   } else if (e.target.value==="Teknologi") {
-  //     setSearchBooksCategory(e.target.value.filter(book => book.book_category===e.target.value))
-  //   }
-  // }
-
+  
   if(books.length === 0) {
     return (<p>Loading...</p>)
   }
@@ -173,11 +162,6 @@ const CategoryDetail = () => {
             </li>
           </ul>
           ))}
-          {/* <ul className="arrow nav nav-tabs category-filter fs-2">
-            <button value="Teknologi" type="button" className="btn btn-link " styles={{color: "#FEB83C", textDecoration: "none"}} onClick={handleSearchBooksByCategory}>test</button>
-            <button value="Self Development" type="button" className="btn btn-link " styles={{color: "#FEB83C", textDecoration: "none"}} onClick={handleSearchBooksByCategory}>Self Development</button>
-            <button value="Bahasa" type="button" className="btn btn-link " styles={{color: "#FEB83C", textDecoration: "none"}} onClick={handleSearchBooksByCategory}>Bahasa</button>
-          </ul> */}
         </div>
         
       </div>
@@ -194,6 +178,7 @@ const CategoryDetail = () => {
                   } 
                 }).map((book, key) => (
                   <>
+                  {/* {console.log(book)} */}
                     <Modal
                       key={key}
                       id={book.id}
