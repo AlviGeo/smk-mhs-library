@@ -5,12 +5,12 @@ import { historyColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, where } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, where, getDoc } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const DatatableApproval = () => {
   const [data, setData] = useState([]);
-
+  const [book, setBooks] = useState();
   
 
   useEffect(() => {
@@ -58,15 +58,31 @@ const DatatableApproval = () => {
     setData(data.filter((item) => item.id !== id));
   };
 
-  const handleUpdate = async (id) => {
+  const handleUpdate = async (id, bookId) => {
 
     const historyRef = doc(db, "history", id)
-    // const booksRef = doc(db, )
+    const bookRef = doc(db, "books", bookId)
+    const docSnap = await getDoc(bookRef);
+    
     try {
+      if (docSnap.exists()) {
+        setBooks(docSnap.id, docSnap.data())
+      } else {
+        console.log("No such document!");
+        Swal.fire(
+          '',
+          'Data Not Found!',
+          'error'
+        )
+      }
+
       await updateDoc(historyRef, {
         approved: "approved",
         book_status: "Unavailable",
         status_peminjaman: true
+      })
+      await updateDoc(bookRef, {
+        book_total: docSnap.data().book_total-1
       })
       Swal.fire(
         '',
@@ -87,7 +103,8 @@ const DatatableApproval = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-              <div className="viewButton" onClick={() => handleUpdate(params.row.id)}>Approve</div>
+            {/* {console.log(params)} */}
+              <div className="viewButton" onClick={() => handleUpdate(params.row.id, params.row.book_id)}>Approve</div>
             <div
               className="deleteButton"
               onClick={() => handleReject(params.row.id)}
