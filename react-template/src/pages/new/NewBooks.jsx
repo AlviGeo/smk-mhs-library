@@ -17,6 +17,7 @@ import {
   doc,
   serverTimestamp,
   setDoc,
+  getDocs
 } from "firebase/firestore";
 import { db, storage } from "../../firebase-config"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -27,11 +28,28 @@ const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  
   // const [dropdown, setDropdown] = useState()
   const navigate = useNavigate()
 
   useEffect(() => {
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "category"));
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc.id, ...doc.data()});
+        });
+        setCategory(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData()
+
     const uploadFile = () => {
       const name = new Date().getTime() + "_" + file.name;
 
@@ -73,15 +91,8 @@ const New = ({ inputs, title }) => {
 
   const handleDropdownCategory = (event) => {
     console.log(event.target.value)
-    setCategory(event.target.value);
+    setSelectedCategory(event.target.value);
   };
-
-  
-  // const handleCategory = (e) => {
-  //   const id = e.target.id;
-  //   const value = e.target.value;
-  //   setCategory({...category, [id]: value})
-  // }
 
   const handleInput = (e) => {
     const id = e.target.id;
@@ -95,7 +106,7 @@ const New = ({ inputs, title }) => {
     
     try {
       await addDoc(collection(db, "books"), {
-        ...data, category,
+        ...data, category: selectedCategory,
         timeStamp: moment().format('YYYY-MM-DD'),
       });
       navigate(-1)
@@ -147,22 +158,32 @@ const New = ({ inputs, title }) => {
                     onChange={handleInput}
                     required
                   /> :  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small" >Kategori</InputLabel>
+                  <InputLabel id="demo-select-small" >Select...</InputLabel>
                   <Select
                     type={input.type}
-                    value={category}
+                    value={selectedCategory}
                     placeholder={input.placeholder}
                     onChange={handleDropdownCategory}
                     required
                     styles={{paddingRight: "100px"}}
                   >
-                    <MenuItem value="">
+                    <MenuItem value="" disabled>
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={"Teknologi"}>Teknologi</MenuItem>
+                    
+
+                    {category && category.map((cat) => {
+                      return (
+                      <MenuItem key={cat.id} value={cat.category_name}>
+                        {cat.category_name}
+                        </MenuItem>
+                      )
+                    })}
+  
+                    {/* <MenuItem value={"Teknologi"}>Teknologi</MenuItem>
                     <MenuItem value={"Agama"}>Agama</MenuItem>
                     <MenuItem value={"Keuangan"}>Keuangan</MenuItem>
-                    <MenuItem value={"Lainnya"}>Lainnya</MenuItem>
+                    <MenuItem value={"Lainnya"}>Lainnya</MenuItem> */}
                   </Select>
                 </FormControl>} 
                 
