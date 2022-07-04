@@ -78,7 +78,6 @@ const CategoryDetail = () => {
   }
 
   const handleDropdownCategory = (e) => {
-    console.log(e.target.value);
     setSelectedCategory(e.target.value);
   };
 
@@ -220,7 +219,6 @@ const CategoryDetail = () => {
                   })
                   .filter((book) => {
                     if (book.category == selectedCategory) {
-                      console.log(book, selectedCategory);
                       return book;
                     } else if (selectedCategory === "") {
                       return book;
@@ -228,7 +226,6 @@ const CategoryDetail = () => {
                   })
                   .map((book, key) => (
                     <>
-                      {/* {console.log(book)} */}
                       <Modal
                         key={key}
                         id={book.id}

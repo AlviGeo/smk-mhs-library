@@ -1,16 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // Import Routes
 import Login from "./pages/auth/Login";
 import Home from "./pages/home/Home";
 import CategoryDetail from "./pages/user/CategoryDetail";
-import InformationLink from "./pages/home/InformationLink";
 import AboutUs from "./pages/home/AboutUs";
 import Contact from "./pages/home/Contact";
-import UserBookStatus from "./pages/UserBookStatus";
 import NotFound from "./pages/NotFound";
-import Register from "./pages/auth/Register";
 import BorrowStatus from "./pages/user/BorrowStatus";
 
 // Import Context
@@ -22,8 +19,6 @@ function App() {
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
   };
-
-  // console.log(currentUser);
 
   return (
     <>

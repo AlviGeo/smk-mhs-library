@@ -17,14 +17,11 @@ import BookDetails from "./pages/BookDetails/BookDetails";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-
   const { currentUser } = useContext(AuthContext);
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
   };
-
-  // console.log(currentUser);
 
   return (
     <div className={darkMode ? "app dark" : "app"}>

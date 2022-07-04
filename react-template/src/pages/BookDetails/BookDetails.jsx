@@ -1,17 +1,14 @@
 import React, {useState, useEffect} from "react";
-import "./BookDetails.scss";
+import {useParams, Outlet} from "react-router-dom";
+
+// Import Layout
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
-import List from "../../components/table/Table";
-import profileImg from "./female-icon.png";
+import "./BookDetails.scss";
 
-
-
-
-import {useParams, Outlet} from "react-router-dom";
+// Import Firebase
 import {db} from "../../firebase-config";
-import { collection, query, where, getDocs, doc, getDoc, documentId } from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
 import ModalEditBook from "../../components/ModalEdit/ModalEditBook";
 
 
@@ -26,17 +23,13 @@ const BookDetails = () => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
-      setBookDetails({id: docSnap.id, ...docSnap.data()});
+        setBookDetails({id: docSnap.id, ...docSnap.data()});
       } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
+        console.log("No such document!");
       }
     }
     fetchData();
-  }, [])
-
-  console.log(bookDetails)
+  }, [bookId])
 
   return (
     <div className="single">
@@ -45,7 +38,6 @@ const BookDetails = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            {/* <div className="editButton">Edit</div> */}
             <h1 className="title">Book Information</h1>
             <div className="item">
               <img
@@ -90,9 +82,7 @@ const BookDetails = () => {
             </div>
               </div>
             </div>
-            
           </div>
-          
         </div>
       </div>
       <Outlet />

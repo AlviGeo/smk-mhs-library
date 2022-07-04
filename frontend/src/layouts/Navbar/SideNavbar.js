@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-const SideNavbar = ({books}) => {
-  const [searchBooks, setSearchBooks] = useState("")
+const SideNavbar = ({ books }) => {
+  const [searchBooks, setSearchBooks] = useState("");
 
   return (
     <div className="col-lg-4 order-1 order-lg-0">
@@ -11,7 +11,9 @@ const SideNavbar = ({books}) => {
           type="search"
           placeholder="Cari Buku.."
           aria-label="Search"
-          onChange={event => {setSearchBooks(event.target.value)}}
+          onChange={(event) => {
+            setSearchBooks(event.target.value);
+          }}
         />
         <button className="btn btn-outline-warning my-2 my-sm-0" type="submit">
           Search
@@ -38,10 +40,7 @@ const SideNavbar = ({books}) => {
             </li>
           </ul>
         </div>
-        {/* Categories end */}
-        
       </div>
-      {/* Sidebar end */}
     </div>
   );
 };

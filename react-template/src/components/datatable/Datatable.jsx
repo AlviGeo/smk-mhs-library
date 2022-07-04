@@ -1,33 +1,17 @@
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 
-import { collection, getDocs, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const Datatable = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({id: doc.id, ...doc.data()});
-    //       // doc.data() is never undefined for query doc snapshots
-    //       // console.log(doc.id, " => ", doc.data());
-    //     });
-    //     setData(list);
-    //     console.log(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData()
     const unsub = onSnapshot(collection(db, "users"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {

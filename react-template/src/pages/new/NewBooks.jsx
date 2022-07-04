@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./newBook.scss";
-import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
@@ -14,14 +13,10 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import {
   addDoc,
   collection,
-  doc,
-  serverTimestamp,
-  setDoc,
   getDocs
 } from "firebase/firestore";
 import { db, storage } from "../../firebase-config"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
 
 
 const New = ({ inputs, title }) => {
@@ -45,7 +40,7 @@ const New = ({ inputs, title }) => {
         });
         setCategory(list);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
     fetchData()
@@ -66,17 +61,15 @@ const New = ({ inputs, title }) => {
           setPerc(progress);
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload is paused");
               break;
             case "running":
-              console.log("Upload is running");
               break;
             default:
               break;
           }
         },
         (error) => {
-          console.log(error);
+          console.log(error.message);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -149,7 +142,7 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  {input.type === "text" || input.type == "number" ? <input
+                  {input.type === "text" || input.type === "number" ? <input
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}

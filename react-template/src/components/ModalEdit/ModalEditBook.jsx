@@ -9,13 +9,10 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 
 // Import Firebase
 import {db} from "../../firebase-config";
-import { collection, query, where, doc, getDoc, documentId, updateDoc } from "firebase/firestore";
-import { getStorage, ref, updateMetadata } from "firebase/storage";
+import { doc, updateDoc } from "firebase/firestore";
 
 const style = {
     position: 'absolute',
@@ -51,8 +48,6 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
   const [description, setDescription] = useState(bookDescription);
   const [total, setTotal] = useState(bookTotal);
   const [category, setCategory] = useState(bookCategory);
-  const [image, setImage] = useState(null);
-  const [imageUpload, setImageUpload] = useState(0);
 
   const navigate = useNavigate()
   const [open, setOpen] = React.useState(false);
@@ -111,7 +106,7 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
         aria-describedby="child-modal-description"
       >
         <form onSubmit={handleUpdate}>
-        <Box sx={{ ...style, width: 550, height: 450, marginTop: "5px" }}>
+        <Box sx={{ ...style, width: 550, height: 530, marginTop: "5px" }}>
           <h2 id="child-modal-title">Edit Book Information</h2>
           <Grid container spacing={2} columns={16}>
             <Grid item xs={8}>
@@ -121,7 +116,6 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
                 defaultValue={bookTitle}
                 size="small"
                 onChange={(e) => setTitle(e.target.value)}
-                // inputProps={{min: 0, style: { textAlign: 'center' }}}
                 /><br />
             </Grid>
             <Grid item xs={8}>
@@ -131,7 +125,6 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
                     defaultValue={bookAuthor}
                     size="small"
                     onChange={(e) => setAuthor(e.target.value)}
-                    // inputProps={{min: 0, style: { textAlign: 'center' }}}
                     /><br />
             </Grid>
             <Grid item xs={8}><p className="itemKey">Publisher</p>
@@ -169,14 +162,6 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
                     size="small"
                     />
             </Grid>
-            {/* <Grid item xs={8}><p className="itemKey">Foto</p>
-                    <TextField
-                    type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
-                    name="description"
-                    size="small"
-                    />
-            </Grid> */}
           </Grid>
           <br />
           <div className="button">

@@ -1,32 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router-dom";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Swal from 'sweetalert2';
-
 
 // Layouts
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./newCategories.scss";
 
-
 // Import Firebase
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import {
   addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
+  collection
 } from "firebase/firestore";
-import { db, storage } from "../../firebase-config"
+import { db } from "../../firebase-config"
 
 
 const NewCategories = ({ inputs, title }) => {
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
-  const [category, setCategory] = useState("");
   const navigate = useNavigate()
 
   

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { historyColumns, userRows } from "../../datatablesource";
-import { Link } from "react-router-dom";
+import { historyColumns } from "../../datatablesource";
 import Swal from 'sweetalert2';
 
-import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, where, getDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, updateDoc, onSnapshot, query, where, getDoc } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const DatatableApproval = () => {
@@ -103,7 +102,6 @@ const DatatableApproval = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            {/* {console.log(params)} */}
               <div className="viewButton" onClick={() => handleUpdate(params.row.id, params.row.book_id)}>Approve</div>
             <div
               className="deleteButton"

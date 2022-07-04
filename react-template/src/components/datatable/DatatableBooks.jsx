@@ -1,39 +1,22 @@
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { bookColumns, userRows } from "../../datatablesource";
+import { bookColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 
-import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const DatatableBooks = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({id: doc.id, ...doc.data()});
-    //       // doc.data() is never undefined for query doc snapshots
-    //       // console.log(doc.id, " => ", doc.data());
-    //     });
-    //     setData(list);
-    //     console.log(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData()
     const unsub = onSnapshot(collection(db, "books"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {
         list.push({id:doc.id, ...doc.data()});
       })
-      // console.log(list)
       setData(list)
     }, (error) => {
       console.log(error);
@@ -42,10 +25,6 @@ const DatatableBooks = () => {
       unsub();
     }
   }, []);
-
-  const findId = data.find(book => book.id === "fn7Xp1TKu2VZfs0dtXWP")
-  // console.log(findId)
-
 
   const handleDelete = async (id) => {
     try {

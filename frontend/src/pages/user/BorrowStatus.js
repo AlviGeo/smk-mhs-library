@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import movies from "./movies";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import { useParams, Outlet } from "react-router-dom";
 // Alert
@@ -11,11 +10,8 @@ import Swal from "sweetalert2";
 import {
   collection,
   getDocs,
-  deleteDoc,
   doc,
-  onSnapshot,
   updateDoc,
-  getDoc,
   where,
   query,
 } from "firebase/firestore";
@@ -40,14 +36,13 @@ const BorrowStatus = () => {
       const querySnapshot = await getDocs(q);
       let list = [];
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
         list.push({id:doc.id, ...doc.data()});
       });
       setData(list)
     };
     fetchData();
-  }, []);
+    
+  }, [id]);
 
   
 
@@ -55,21 +50,13 @@ const BorrowStatus = () => {
 
     const docRef = doc(db, "history", data[0].id);
     try {
-      const update = await updateDoc(docRef, {
-        status_peminjaman: false,
-
-      })
+      await updateDoc(docRef, {status_peminjaman: false})
       return Swal.fire("", "Buku Berhasil di Kembalikan!", "success");
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
+      return Swal.fire("", "Buku Gagal di Kembalikan!", "error");
     }
   }
-
-  // console.log(data);
-
-  // <Button variant="info" onClick={handleShow}>
-  //   Detail
-  // </Button>;
 
   function getNumberOfPages(rowCount, rowsPerPage) {
     return Math.ceil(rowCount / rowsPerPage);
@@ -132,7 +119,6 @@ const BorrowStatus = () => {
     rowsPerPage,
     rowCount,
     onChangePage,
-    onChangeRowsPerPage, // available but not used here
     currentPage,
   }) => {
     const handleBackButtonClick = () => {

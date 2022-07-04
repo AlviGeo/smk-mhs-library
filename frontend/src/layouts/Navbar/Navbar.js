@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import { NavLink, useNavigate, Navigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // Import Context
 import { AuthContext } from "../../context/AuthContext";
@@ -31,10 +31,6 @@ const Navbar = ({ children }) => {
   };
 
   const { currentUser } = useContext(AuthContext);
-
-  const style = ({ isActive }) => ({
-    fontWeight: isActive ? "bold" : "normal",
-  });
 
   return (
     <div className="body-inner">
@@ -213,7 +209,7 @@ const Navbar = ({ children }) => {
                   >
                     <ul className="nav navbar-nav mr-auto">
                       <li className="nav-item dropdown active">
-                        <NavLink to="/" style={style} className="nav-link">
+                        <NavLink to="/"  className="nav-link">
                           Home
                         </NavLink>
                       </li>
@@ -221,7 +217,6 @@ const Navbar = ({ children }) => {
                       <li className="nav-item">
                         <NavLink
                           to="/category"
-                          style={style}
                           className="nav-link"
                         >
                           Library

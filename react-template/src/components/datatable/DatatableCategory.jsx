@@ -1,11 +1,11 @@
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { categoryColumns, userRows } from "../../datatablesource";
+import { categoryColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 
-import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import {db} from "../../firebase-config"
 
 const DatatableCategory = () => {
@@ -18,7 +18,6 @@ const DatatableCategory = () => {
       snapShot.docs.forEach(doc => {
         list.push({id:doc.id, ...doc.data()});
       })
-      // console.log(list)
       setData(list)
     }, (error) => {
       console.log(error);
@@ -27,10 +26,6 @@ const DatatableCategory = () => {
       unsub();
     }
   }, []);
-
-  // const findId = data.find(book => book.id === "fn7Xp1TKu2VZfs0dtXWP")
-  // console.log(findId)
-
 
   const handleDelete = async (id) => {
     try {

@@ -8,17 +8,8 @@ import "../../components/css/landing-page.css";
 import {
   collection,
   getDocs,
-  addDoc,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  query,
-  where
 } from "firebase/firestore";
 import { db } from "../../firebase-config";
-
-// Import image
-import containerImage1 from "../../components/images/home/landing-page-img.png";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -59,40 +50,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {/* <div className="banner-carousel-item home-slider-two">
-          <div className="slider-content text-right">
-            <div className="container h-100">
-              <div className="row align-items-center h-100">
-                <div className="col-md-12">
-                  <h3 className="slide-sub-title">
-                    WELCOME TO SYNERGY LIBRARY SMK MHS BATAM
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
-
-{/* <div className="banner-carousel-item" style={{backgroundImage: `url("https://picsum.photos/500/600")`}}>
-	<div className="slider-content">
-		<div className="container h-100">
-			<div className="row align-items-center h-100">
-				<div className="col-md-12 text-center">
-					<h2 className="slide-title" data-animation-in="slideInLeft">17 Years of excellence in</h2>
-					<h3 className="slide-sub-title" data-animation-in="slideInRight">Construction Industry</h3>
-					<p data-animation-in="slideInLeft" data-duration-in="1.2">
-						<a href="services.html" className="slider btn btn-primary">Our Services</a>
-						<a href="contact.html" className="slider btn btn-primary border">Contact Now</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div> */}
-{/* background-repeat: no-repeat;
-    background-size: cover;
-    height: 550px; */}
 
       <section className="call-to-action-box no-padding">
         <div className="container">
@@ -111,9 +69,6 @@ const Home = () => {
       </section>
 
       <HomeCategory />
-      {/* View Book List */}
-      
-      {/* End of View Book List */}
 
       <section id="ts-features" className="ts-features">
         <div className="container">
@@ -136,6 +91,7 @@ const Home = () => {
               ></iframe>
               {/* Content row 1 end */}
             </div>
+
             {/* Col end */}
             <div className="col-lg-6 mt-4 mt-lg-0">
               <h3 className="into-sub-title">Visi, Misi, dan Tujuan Kami</h3>
