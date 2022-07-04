@@ -111,16 +111,6 @@ const Footer = () => {
                   </span>
                 </div>
               </div>
-              <div
-                id="back-to-top"
-                data-spy="affix"
-                data-offset-top={10}
-                className="back-to-top position-fixed"
-              >
-                <button className="btn btn-primary" title="Back to Top">
-                  <i className="fa fa-angle-double-up" />
-                </button>
-              </div>
             </div>
             {/* Container end */}
           </div>
