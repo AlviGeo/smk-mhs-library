@@ -46,7 +46,7 @@ const NewCategories = ({ inputs, title }) => {
       });
       Swal.fire(
         '',
-        'Category Buku Berhasil Ditambah!',
+        'Kategori Buku Berhasil Ditambah!',
         'success'
       )
       navigate(-1)

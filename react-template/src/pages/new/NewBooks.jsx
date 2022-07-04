@@ -63,7 +63,6 @@ const New = ({ inputs, title }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
           setPerc(progress);
           switch (snapshot.state) {
             case "paused":
@@ -89,9 +88,8 @@ const New = ({ inputs, title }) => {
     file && uploadFile();
   }, [file]);
 
-  const handleDropdownCategory = (event) => {
-    console.log(event.target.value)
-    setSelectedCategory(event.target.value);
+  const handleDropdownCategory = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
   const handleInput = (e) => {
@@ -157,7 +155,7 @@ const New = ({ inputs, title }) => {
                     placeholder={input.placeholder}
                     onChange={handleInput}
                     required
-                  /> :  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                  /> :  <FormControl sx={{ m: 2, width: 120 }} size="small">
                   <InputLabel id="demo-select-small" >Select...</InputLabel>
                   <Select
                     type={input.type}
@@ -179,11 +177,6 @@ const New = ({ inputs, title }) => {
                         </MenuItem>
                       )
                     })}
-  
-                    {/* <MenuItem value={"Teknologi"}>Teknologi</MenuItem>
-                    <MenuItem value={"Agama"}>Agama</MenuItem>
-                    <MenuItem value={"Keuangan"}>Keuangan</MenuItem>
-                    <MenuItem value={"Lainnya"}>Lainnya</MenuItem> */}
                   </Select>
                 </FormControl>} 
                 

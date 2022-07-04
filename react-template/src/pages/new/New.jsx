@@ -30,8 +30,6 @@ const New = ({ inputs, title }) => {
    
   }, []);
 
-  console.log(data);
-
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
@@ -79,7 +77,6 @@ const New = ({ inputs, title }) => {
           <div className="right" >
             <form classname="user-form" onSubmit={handleAdd} styles={{flexDirection: "column",
           alignContent: "center"}}>
-
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
