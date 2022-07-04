@@ -35,7 +35,7 @@ const BorrowStatus = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(collection(db, "history"), where("user_id", "==", id), where("status_peminjaman", "==", true), where("approved", "in", ["waiting", "rejected", "approved"]));
+      const q = query(collection(db, "history"), where("user_id", "==", id), where("approved", "in", ["waiting", "rejected", "approved"]));
 
       const querySnapshot = await getDocs(q);
       let list = [];
@@ -49,7 +49,7 @@ const BorrowStatus = () => {
     fetchData();
   }, []);
 
-  // console.log(data[0].id)
+  
 
   const handleReturn = async(e) => {
 
@@ -105,46 +105,6 @@ const BorrowStatus = () => {
       name: "Action",
       button: true,
       cell: () => (
-        // <div className="openbtn text-center">
-        //   <button
-        //     type="button"
-        //     className="btn btn-info btn-sm"
-        //     data-bs-toggle="modal"
-        //     data-bs-target="#myModal"
-        //   >
-        //     Kembalikan
-        //   </button>
-        //   <div className="modal" tabindex="-1" id="myModal">
-        //     <div className="modal-dialog modal-dialog-centered">
-        //       <div className="modal-content">
-        //         <div className="modal-header">
-        //           <h5 className="modal-title">Pengembalian Buku</h5>
-        //           <button
-        //             type="button"
-        //             className="btn-close"
-        //             data-bs-dismiss="modal"
-        //             aria-label="Close"
-        //           ></button>
-        //         </div>
-        //         <div className="modal-body">
-        //           <p>Apakah sudah yakin untuk di retur?</p>
-        //         </div>
-        //         <div className="modal-footer">
-        //           <button
-        //             type="button"
-        //             className="btn btn-secondary"
-        //             data-bs-dismiss="modal"
-        //           >
-        //             Tutup
-        //           </button>
-        //           <button type="button" className="btn btn-primary  ">
-        //             Iya
-        //           </button>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </div>
         <div>
           <Button variant="primary btn-sm" onClick={handleShow}>
         Kembalikan
@@ -242,7 +202,6 @@ const BorrowStatus = () => {
     <div className="form-check">
       <input
         htmlFor="booty-check"
-        type="checkbox"
         className="form-check-input"
         ref={ref}
         onClick={onClick}

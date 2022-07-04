@@ -24,6 +24,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
+    
     const fetchData = async () => {
       let list = [];
       try {
@@ -43,14 +44,13 @@ const Home = () => {
     <>
       <Navbar />
       <div className="banner-carousel banner-carousel-1 mb-0">
-        <div className="banner-carousel-item home-slider-two">
+        <div className="banner-carousel-item home-slider-one">
           <div className="slider-content text-left">
             <div className="container h-100">
               <div className="row align-items-center h-100">
                 <div className="col-md-12">
                   <h3
                     className="slide-sub-title"
-                    data-animation-in="slideInLeft"
                   >
                     WELCOME TO SYNERGY LIBRARY SMK MHS BATAM
                   </h3>
@@ -59,20 +59,40 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="banner-carousel-item home-slider-three">
+        {/* <div className="banner-carousel-item home-slider-two">
           <div className="slider-content text-right">
             <div className="container h-100">
               <div className="row align-items-center h-100">
                 <div className="col-md-12">
-                  <h3 className="slide-sub-title" data-animation-in="fadeIn">
+                  <h3 className="slide-sub-title">
                     WELCOME TO SYNERGY LIBRARY SMK MHS BATAM
                   </h3>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
+
+{/* <div className="banner-carousel-item" style={{backgroundImage: `url("https://picsum.photos/500/600")`}}>
+	<div className="slider-content">
+		<div className="container h-100">
+			<div className="row align-items-center h-100">
+				<div className="col-md-12 text-center">
+					<h2 className="slide-title" data-animation-in="slideInLeft">17 Years of excellence in</h2>
+					<h3 className="slide-sub-title" data-animation-in="slideInRight">Construction Industry</h3>
+					<p data-animation-in="slideInLeft" data-duration-in="1.2">
+						<a href="services.html" className="slider btn btn-primary">Our Services</a>
+						<a href="contact.html" className="slider btn btn-primary border">Contact Now</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> */}
+{/* background-repeat: no-repeat;
+    background-size: cover;
+    height: 550px; */}
 
       <section className="call-to-action-box no-padding">
         <div className="container">

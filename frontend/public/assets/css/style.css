@@ -497,7 +497,7 @@ a[href^=tel] {
   box-shadow: none !important;
 }
 
-.btn-primary,
+.btn-warning,
 .btn-dark {
   border: 0;
   border-radius: 3px;
@@ -511,18 +511,18 @@ a[href^=tel] {
 }
 
 @media (max-width: 767px) {
-  .btn-primary,
+  .btn-warning,
   .btn-dark {
     font-size: 13px;
   }
 }
 
-.btn-white.btn-primary {
+.btn-white.btn-warning {
   background: #fff;
   color: #ffb600;
 }
 
-.btn-primary {
+.btn-warning {
   background: #ffb600;
 }
 
@@ -530,18 +530,18 @@ a[href^=tel] {
   background: #23282d;
 }
 
-.btn-primary:hover,
+.btn-warning:hover,
 .btn-dark:hover,
-.btn-white.btn-primary:hover {
+.btn-white.btn-warning:hover {
   background: #111;
   color: #fff;
 }
 
-.btn-primary:hover:active, .btn-primary:hover:focus,
+.btn-warning:hover:active, .btn-warning:hover:focus,
 .btn-dark:hover:active,
 .btn-dark:hover:focus,
-.btn-white.btn-primary:hover:active,
-.btn-white.btn-primary:hover:focus {
+.btn-white.btn-warning:hover:active,
+.btn-white.btn-warning:hover:focus {
   color: #fff;
   background-color: #111 !important;
 }
@@ -1181,7 +1181,7 @@ ul.navbar-nav > li > a {
 }
 
 /* Get a quote */
-.header-get-a-quote .btn-primary {
+.header-get-a-quote .btn-warning {
   padding: 12px 25px !important;
   font-size: 13px;
   border-radius: 3px;
@@ -1192,18 +1192,18 @@ ul.navbar-nav > li > a {
 }
 
 @media (max-width: 1200px) {
-  .header-get-a-quote .btn-primary {
+  .header-get-a-quote .btn-warning {
     padding: 12px !important;
   }
 }
 
 @media (max-width: 991px) {
-  .header-get-a-quote .btn-primary {
+  .header-get-a-quote .btn-warning {
     padding: 12px 30px !important;
   }
 }
 
-.header-get-a-quote .btn-primary:hover {
+.header-get-a-quote .btn-warning:hover {
   background: #272d33;
   color: #ffb600 !important;
 }
@@ -1213,26 +1213,6 @@ ul.navbar-nav > li.header-get-a-quote:hover > a:after {
   content: no-close-quote;
 }
 
-/* Table of Content
-==================================================
-1.    Slider
-2.    Call to action
-3.    Features
-4.    Facts
-5.    Services
-6.   Project area
-7.   Content area
-8.   Testimonial
-9.   Subscribe area
-10.   News section
-11.   Footer
-12.   Sub Pages
-13.   Contact Us
-14.   News Listing
-15.   News Single
-16.   Sidebar
-17.   Error page
-*/
 /* Slider
 ================================================== */
 /*-- Main slide --*/
@@ -2035,7 +2015,7 @@ ul.navbar-nav > li.header-get-a-quote:hover > a:after {
           transform: perspective(1px) translate3d(0, 0, 0);
 }
 
-.general-btn .btn-primary:hover {
+.general-btn .btn-warning:hover {
   background: #000;
 }
 
@@ -2575,7 +2555,7 @@ img.testimonial-thumb {
   bottom: 20px;
 }
 
-#back-to-top .btn.btn-primary {
+#back-to-top .btn.btn-warning {
   width: 36px;
   height: 36px;
   line-height: 36px;
@@ -2588,7 +2568,7 @@ img.testimonial-thumb {
 }
 
 @media (max-width: 767px) {
-  #back-to-top .btn.btn-primary {
+  #back-to-top .btn.btn-warning {
     width: 32px;
     height: 32px;
     line-height: 32px;
@@ -2596,7 +2576,7 @@ img.testimonial-thumb {
   }
 }
 
-#back-to-top .btn.btn-primary:hover {
+#back-to-top .btn.btn-warning:hover {
   color: #fff;
 }
 
@@ -3088,7 +3068,7 @@ label {
   margin-left: 5px;
 }
 
-.post-footer .btn.btn-primary {
+.post-footer .btn.btn-warning {
   font-size: 12px;
   margin-top: 10px;
 }
@@ -3292,7 +3272,7 @@ label {
   margin-bottom: 20px;
 }
 
-.comments-form .btn.btn-primary {
+.comments-form .btn.btn-warning {
   margin-top: 20px;
 }
 

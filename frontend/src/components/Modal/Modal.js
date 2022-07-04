@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import moment from "moment";
 
 // Import Context
 import { AuthContext } from "../../context/AuthContext";
@@ -7,21 +8,17 @@ import {
   collection,
   getDoc,
   addDoc,
-  deleteDoc,
   doc,
   onSnapshot,
-  query,
-  where,
   documentId,
   getDocs,
   Timestamp,
-  updateDoc
+  updateDoc,
 } from "firebase/firestore";
 
 // Alert
 import Swal from "sweetalert2";
-// Date Formating
-import moment from "moment";
+
 
 function Modal({
   id,
@@ -32,36 +29,57 @@ function Modal({
   total,
   img,
   book,
+  loading
 }) {
   const { currentUser } = useContext(AuthContext);
-  const bookTotal = total
-  console.log(bookTotal)
+  const [user, setUsers] = useState([]);
+  const bookTotal = total;
   
+
+  useEffect(() => {
+    const fetchUser = async () => { 
+      let list = []; 
+      try {
+        const userRef = doc(db, "users", currentUser.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          list.push({id: userSnap.id, ...userSnap.data()});
+        } else {
+          console.log("No such document!");
+        }
+        setUsers(list);
+      } catch (err) {
+      }
+    }
+    fetchUser();
+  }, [])
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
 
   const handleSubmitRequest = async (e) => {
     e.preventDefault();
 
     const docRef = doc(db, "books", id);
-    console.log(docRef)
-      try {
-        const update = await updateDoc(docRef, {
-          book_total: total-1,
-        })
-        const sendRequest = await addDoc(collection(db, "history"), {
-          user_id: currentUser.uid,
-          book_id: id,
-          book_title: title,          
-          status_peminjaman: false,
-          approved: "waiting",
-          timeStamp: moment().format('YYYY-MM-DD'),
-        });
-        if (!sendRequest) {
-          return Swal.fire("", "Invalid Request!", "error");
-        }
-        return Swal.fire("", "Buku Berhasil di Request!", "success");
-      } catch (err) {
-        console.log(err.message)
+    try {
+      const sendRequest = await addDoc(collection(db, "history"), {
+        user_id: currentUser.uid,
+        book_id: id,
+        book_title: title,
+        user_name: user[0].username,
+        status_peminjaman: false,
+        approved: "waiting",
+        timeStamp: moment().format("YYYY-MM-DD"),
+      });
+      if (!sendRequest) {
+        return Swal.fire("", "Invalid Request!", "error");
       }
+      return Swal.fire("", "Buku Berhasil di Request!", "success");
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -85,7 +103,7 @@ function Modal({
           </div>
         </div>
       </div>
-
+      
       {/* Toggle Modal */}
       <div
         className="modal fade"
@@ -126,9 +144,7 @@ function Modal({
                     <h4>{title}</h4>
                     <p className="project-cat">Author: {author} </p>
                     <p className="project-cat">Publisher: {publisher}</p>
-                    <p className="project-cat">
-                      Available: {total}{" "}
-                    </p>
+                    <p className="project-cat">Available: {total} </p>
                   </div>
                 </div>
               </div>
@@ -140,7 +156,7 @@ function Modal({
                 >
                   Tutup
                 </button>
-                {currentUser && bookTotal>=1 ? (
+                {currentUser && bookTotal > 0 ? (
                   <button type="submit" className="btn btn-primary">
                     Request
                   </button>

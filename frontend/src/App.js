@@ -31,7 +31,6 @@ function App() {
         {/* public routes */}
         <Route path="/">
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
           <Route index element={<Home />} />
           <Route path="category" element={<CategoryDetail />} />
           <Route path="aboutus" element={<AboutUs />} />
@@ -43,8 +42,7 @@ function App() {
                 <BorrowStatus />
               </RequireAuth>
             }
-          >
-          </Route>
+          ></Route>
         </Route>
 
         {/* not found routes */}

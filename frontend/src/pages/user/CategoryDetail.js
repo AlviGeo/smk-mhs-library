@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
 import "../../components/css/CategoryDetail.css";
 
 // Import Data from Firebase
@@ -11,6 +12,11 @@ import {
   onSnapshot,
   query,
   where,
+  limit,
+  orderBy,
+  startAfter,
+  limitToLast,
+  startAt,
 } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
@@ -25,11 +31,14 @@ import Modal from "../../components/Modal/Modal";
 const CategoryDetail = () => {
   const [books, setBooks] = useState([]);
   const [searchBooksTitle, setSearchBooksTitle] = useState("");
-  const [categories, setCategory] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,13 +77,22 @@ const CategoryDetail = () => {
     return <p>Loading...</p>;
   }
 
+  const handleDropdownCategory = (e) => {
+    console.log(e.target.value);
+    setSelectedCategory(e.target.value);
+  };
+
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentBooks = books.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+   // Change page
+   const paginate = (e, pageNumber) => {
+    e.preventDefault();
+
+    setCurrentPage(pageNumber)
+   }
 
   // Dummy data
   const staticbooks = [
@@ -170,14 +188,17 @@ const CategoryDetail = () => {
               <div className="sidebar sidebar-left">
                 <div className="widget">
                   <h3 className="widget-title mt-4">Kategori</h3>
-                  {categories.map((category) => (
-                    <ul className="arrow nav nav-tabs">
-                      <li>
-                        <a href="/#">{category.category_name}</a>
-                        {/* <a href="/#">Sementara</a> */}
-                      </li>
-                    </ul>
-                  ))}
+                  <select className="select-button orm-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleDropdownCategory} >
+                    <option className="select-option" value="" selected>All</option>
+                    {category &&
+                      category.map((cat) => {
+                        return (
+                          <option key={cat.id} value={cat.category_name}>
+                            {cat.category_name}
+                          </option>
+                        );
+                      })}
+                  </select>
                 </div>
               </div>
               {/* Sidebar end */}
@@ -194,6 +215,14 @@ const CategoryDetail = () => {
                         .toLowerCase()
                         .includes(searchBooksTitle.toLowerCase())
                     ) {
+                      return book;
+                    }
+                  })
+                  .filter((book) => {
+                    if (book.category == selectedCategory) {
+                      console.log(book, selectedCategory);
+                      return book;
+                    } else if (selectedCategory === "") {
                       return book;
                     }
                   })

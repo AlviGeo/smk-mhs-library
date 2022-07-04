@@ -41,6 +41,36 @@ const HomeCategory = () => {
                     </div>
                   </div>
                 </div>
+                <div className="col-lg-3 col-md-6 col-sm-4">
+                  <div className="card" styles={{ width: "18rem" }}>
+                    <img
+                      className="card-img-top"
+                      src={project1}
+                      alt="project-img"
+                    />
+                    <div className="card-body">
+                      <p className="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-3 col-md-6 col-sm-4">
+                  <div className="card" styles={{ width: "18rem" }}>
+                    <img
+                      className="card-img-top"
+                      src={project1}
+                      alt="project-img"
+                    />
+                    <div className="card-body">
+                      <p className="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 {/* shuffle item 1 end */}
               </div>
             </div>

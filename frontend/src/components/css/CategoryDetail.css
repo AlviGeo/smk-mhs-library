@@ -33,3 +33,16 @@
 .category-filter:hover {
   color: #FEB83C;
 }
+
+.select-button {
+  margin: 5px;
+  border-color: #23282D;
+  background-color: white;
+  color: #23282D;
+  border-radius: 7px;
+  padding: 8px;
+}
+
+.select-button.select-option {
+  color: #23282D
+}
