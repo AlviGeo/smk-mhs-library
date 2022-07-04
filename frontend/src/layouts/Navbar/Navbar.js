@@ -208,7 +208,7 @@ const Navbar = ({ children }) => {
                     className="collapse navbar-collapse"
                   >
                     <ul className="nav navbar-nav mr-auto">
-                      <li className="nav-item dropdown active">
+                      <li className="nav-item dropdown">
                         <NavLink to="/"  className="nav-link">
                           Home
                         </NavLink>

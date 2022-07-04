@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Form from "react-bootstrap/Form";
 import "../../components/css/CategoryDetail.css";
 
 // Import Data from Firebase
 import {
   collection,
   getDocs,
-  addDoc,
-  deleteDoc,
-  doc,
   onSnapshot,
-  query,
-  where,
-  limit,
-  orderBy,
-  startAfter,
-  limitToLast,
-  startAt,
 } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
@@ -34,11 +23,8 @@ const CategoryDetail = () => {
   const [category, setCategory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
-
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,62 +75,8 @@ const CategoryDetail = () => {
    // Change page
    const paginate = (e, pageNumber) => {
     e.preventDefault();
-
     setCurrentPage(pageNumber)
    }
-
-  // Dummy data
-  const staticbooks = [
-    {
-      id: 1,
-      title: "Atomic Habits",
-      author: "James Clear",
-      publisher: "Penguin Random House",
-      publishedDate: "16 October 2018",
-      available: true,
-      coverbook: "../components/images/projects/coverbook.jpg",
-    },
-    {
-      id: 2,
-      title: "Ikigai",
-      author: "Francesc Miralles",
-      publisher: "Random House UK",
-      publishedDate: "April 2016",
-      available: true,
-    },
-    {
-      id: 3,
-      title: "Think and Grow Rich",
-      author: "Napoleon Hill",
-      publisher: "The Ralston Society",
-      publishedDate: "1937",
-      available: true,
-    },
-    {
-      id: 4,
-      title: "Atomic Habits",
-      author: "James Clear",
-      publisher: "Penguin Random House",
-      publishedDate: "16 October 2018",
-      available: true,
-    },
-    {
-      id: 5,
-      title: "Ikigai",
-      author: "Francesc Miralles",
-      publisher: "Random House UK",
-      publishedDate: "April 2016",
-      available: true,
-    },
-    {
-      id: 6,
-      title: "Think and Grow Rich",
-      author: "Napoleon Hill",
-      publisher: "The Ralston Society",
-      publishedDate: "1937",
-      available: true,
-    },
-  ];
 
   return (
     <div>
@@ -218,7 +150,7 @@ const CategoryDetail = () => {
                     }
                   })
                   .filter((book) => {
-                    if (book.category == selectedCategory) {
+                    if (book.category === selectedCategory) {
                       return book;
                     } else if (selectedCategory === "") {
                       return book;
