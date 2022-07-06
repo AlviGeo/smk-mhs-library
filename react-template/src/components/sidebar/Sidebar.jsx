@@ -3,15 +3,10 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import StoreIcon from "@mui/icons-material/Store";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CategoryIcon from '@mui/icons-material/Category';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import {AuthContext} from "../../context/AuthContext";
@@ -83,6 +78,20 @@ const Sidebar = () => {
           </Link>
 
           <p className="title">MANAGE</p>
+          <Link to ="/approval" style={{ textDecoration: "none" }}>
+          <li>
+            <LibraryAddCheckIcon className="icon" />
+            <span>Approval Buku</span>
+          </li>
+          </Link>
+
+          <Link to ="/returnbooks" style={{ textDecoration: "none" }}>
+          <li>
+            <SystemUpdateAltIcon className="icon" />
+            <span>Pengembalian Buku</span>
+          </li>
+          </Link>
+
           <Link to ="/history" style={{ textDecoration: "none" }}>
           <li>
             <ListAltIcon className="icon" />

@@ -115,6 +115,30 @@ function App() {
             </Route>
 
 
+             {/* Approval Routes */}
+            <Route path="approval">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <List />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
+             {/* Return Book Routes */}
+            <Route path="returnbooks">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <List />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
              {/* History Routes */}
             <Route path="history">
               <Route

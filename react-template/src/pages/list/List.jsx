@@ -5,7 +5,10 @@ import Datatable from "../../components/datatable/Datatable"
 import DatatableBooks from "../../components/datatable/DatatableBooks"
 import DatatableApproval from "../../components/datatable/DatatableApproval";
 import DatatableCategory from "../../components/datatable/DatatableCategory";
+
 import { Outlet } from "react-router-dom"
+import DatatableReturnBooks from "../../components/datatable/DatatableReturnBooks"
+import DatatableHistory from "../../components/datatable/DatatableHistory"
 
 const getDatatable = () => {
   const route = window.location.pathname;
@@ -16,8 +19,12 @@ const getDatatable = () => {
       return <DatatableBooks />;
     case "/category":
       return <DatatableCategory />;
-    case "/history":
+    case "/approval":
       return <DatatableApproval />;
+    case "/returnbooks":
+      return <DatatableReturnBooks />;
+    case "/history": 
+      return <DatatableHistory />;
     default :
       return "Not Found"
   }
