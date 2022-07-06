@@ -120,7 +120,7 @@ const CategoryDetail = () => {
                 <div className="widget">
                   <h3 className="widget-title mt-4">Kategori</h3>
                   <select className="select-button orm-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleDropdownCategory} >
-                    <option className="select-option" value="" selected>All</option>
+                    <option className="select-option" value="" defaultValue>All</option>
                     {category &&
                       category.map((cat) => {
                         return (

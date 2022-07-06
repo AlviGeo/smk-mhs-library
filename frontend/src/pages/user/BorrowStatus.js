@@ -31,7 +31,7 @@ const BorrowStatus = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(collection(db, "history"), where("user_id", "==", id), where("approved", "in", ["waiting", "rejected", "approved"]));
+      const q = query(collection(db, "history"), where("user_id", "==", id), where("approved", "in", ["rejected", "approved"]));
 
       const querySnapshot = await getDocs(q);
       let list = [];
@@ -136,7 +136,7 @@ const BorrowStatus = () => {
     const pages = getNumberOfPages(rowCount, rowsPerPage);
     const pageItems = toPages(pages);
     const nextDisabled = currentPage === pageItems.length;
-    const previosDisabled = currentPage === 1;
+    const previousDisabled = currentPage === 1;
 
     return (
       <nav>
@@ -145,8 +145,8 @@ const BorrowStatus = () => {
             <button
               className="page-link"
               onClick={handleBackButtonClick}
-              disabled={previosDisabled}
-              aria-disabled={previosDisabled}
+              disabled={previousDisabled}
+              aria-disabled={previousDisabled}
               aria-label="previous page"
             >
               Previous
