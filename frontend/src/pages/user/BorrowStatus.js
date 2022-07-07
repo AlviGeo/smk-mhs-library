@@ -6,7 +6,6 @@ import { useParams, Outlet } from "react-router-dom";
 // Alert
 import Swal from "sweetalert2";
 
-
 import {
   collection,
   getDocs,
@@ -31,32 +30,21 @@ const BorrowStatus = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(collection(db, "history"), where("user_id", "==", id), where("approved", "in", ["rejected", "approved"]));
+      const q = query(
+        collection(db, "history"),
+        where("user_id", "==", id),
+        where("status_peminjaman", "in", ["menunggu approval", "sedang dipinjam"])
+      );
 
       const querySnapshot = await getDocs(q);
       let list = [];
       querySnapshot.forEach((doc) => {
-        list.push({id:doc.id, ...doc.data()});
+        list.push({ id: doc.id, ...doc.data() });
       });
-      setData(list)
+      setData(list);
     };
     fetchData();
-    
   }, [id]);
-
-  
-
-  const handleReturn = async(e) => {
-
-    const docRef = doc(db, "history", data[0].id);
-    try {
-      await updateDoc(docRef, {status_peminjaman: false})
-      return Swal.fire("", "Buku Berhasil di Kembalikan!", "success");
-    } catch (err) {
-      console.log(err.message);
-      return Swal.fire("", "Buku Gagal di Kembalikan!", "error");
-    }
-  }
 
   function getNumberOfPages(rowCount, rowsPerPage) {
     return Math.ceil(rowCount / rowsPerPage);
@@ -85,34 +73,38 @@ const BorrowStatus = () => {
     // },
     {
       name: "Status Pinjam",
-      selector: (row) => row.status_peminjaman.toString(),
+      selector: (row) => row.status_peminjaman,
       sortable: true,
     },
-    {
-      name: "Action",
-      button: true,
-      cell: () => (
-        <div>
-          <Button variant="primary btn-sm" onClick={handleShow}>
-        Kembalikan
-      </Button>
-      <Modal show={show} aria-labelledby="contained-modal-title-vcenter" centered>
-        <Modal.Header>
-          <Modal.Title>Konfirmasi Retur Buku</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Apakah sudah yakin untuk dikembalikan?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleReturn}>
-            Yes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-        </div>
-      ),
-    },
+    // {
+    //   name: "Action",
+    //   button: true,
+    //   cell: () => (
+    //     <div>
+    //       <Button variant="primary btn-sm" onClick={handleShow}>
+    //         Kembalikan
+    //       </Button>
+    //       <Modal
+    //         show={show}
+    //         aria-labelledby="contained-modal-title-vcenter"
+    //         centered
+    //       >
+    //         <Modal.Header>
+    //           <Modal.Title>Konfirmasi Retur Buku</Modal.Title>
+    //         </Modal.Header>
+    //         <Modal.Body>Apakah sudah yakin untuk dikembalikan?</Modal.Body>
+    //         <Modal.Footer>
+    //           <Button variant="secondary" onClick={handleClose}>
+    //             Cancel
+    //           </Button>
+    //           <Button variant="primary" onClick={handleReturn}>
+    //             Yes
+    //           </Button>
+    //         </Modal.Footer>
+    //       </Modal>
+    //     </div>
+    //   ),
+    // },
   ];
 
   const BootyPagination = ({
@@ -140,7 +132,7 @@ const BorrowStatus = () => {
 
     return (
       <nav>
-        <ul className="pagination">
+        <ul className="pagination mt-4">
           <li className="page-item">
             <button
               className="page-link"
@@ -200,8 +192,8 @@ const BorrowStatus = () => {
   return (
     <div>
       <Navbar />
-      <div className="container  mt-5 mb-5 d-flex justify-content-center align-items-center">
-        <div className="card">
+      <div className="container  mt-5 mb-5 d-flex justify-content-center align-items-center" style={{padding: "25px"}}>
+        <div className="card" style={{ width:"400px" }}>
           <DataTable
             title="Riwayat Peminjaman"
             columns={columns}
@@ -212,7 +204,7 @@ const BorrowStatus = () => {
             selectableRows
             selectableRowsComponent={BootyCheckbox}
             highlightOnHover
-            style={{height: "200px"}}
+            style={{ height: "500px"}}
           />
         </div>
       </div>

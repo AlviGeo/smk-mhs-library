@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+
+// Import Layout
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./newBook.scss";
-import { useNavigate } from "react-router-dom";
+
+// Material UI
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import TextField from '@mui/material/TextField';
 
 // Date Formating
 import moment from "moment";
@@ -28,7 +32,7 @@ const New = ({ inputs, title }) => {
   const [per, setPerc] = useState(null);
   const [category, setCategory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [datepicker, setDatepicker] = useState(todayDate);
+  const [datepicker, setDatepicker] = useState(new Date());
   
   console.log(todayDate)
   // const [dropdown, setDropdown] = useState()
@@ -106,12 +110,16 @@ const New = ({ inputs, title }) => {
     try {
       await addDoc(collection(db, "books"), {
         ...data, 
-        category: selectedCategory, 
-        published_date: datepicker, 
+        category: selectedCategory,
         times_borrowed:0,
         timeStamp: moment().format('YYYY-MM-DD'),
       });
       navigate(-1)
+      Swal.fire(
+        '',
+        'Book Added!',
+        'success'
+      )
     } catch (err) {
       console.log(err.message);
     }
@@ -160,13 +168,6 @@ const New = ({ inputs, title }) => {
                     placeholder={input.placeholder}
                     onChange={handleInput}
                     required
-                  /> :  input.type === "date" ? 
-                  <TextField
-                    id={input.id}
-                    type={input.type}
-                    defaultValue="2017-05-24"
-                    placeholder={input.placeholder} 
-                    onChange={handleDatepicker}
                   /> : <FormControl sx={{ marginTop: 2, width: 120 }} size="small">
                 <InputLabel id="demo-select-small" >Select...</InputLabel>
                 <Select

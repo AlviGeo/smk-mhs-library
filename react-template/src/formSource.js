@@ -34,21 +34,27 @@ export const bookInputs = [
   },
   {
     id: "book_publisher",
-    label: "Publisher",
+    label: "Penerbit",
     type: "text",
     placeholder: "Book Publisher"
   },
   {
-    id: "book_description",
-    label: "Deskripsi",
+    id: "book_code",
+    label: "Kode Buku",
     type: "text",
-    placeholder: "Book Description",
+    placeholder: "Book Code",
   },
   {
     id: "book_total",
     label: "Jumlah",
     type: "number",
     placeholder: "None",
+  },
+  {
+    id: "date_published",
+    label: "Published Date (Year only)",
+    type: "number",
+    placeholder: "Book Description",
   },
   {
     id: "book_category",

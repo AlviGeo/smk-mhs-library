@@ -56,8 +56,8 @@ const BookDetails = () => {
                   <span className="itemValue">{bookDetails.book_publisher}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Description</span>
-                  <span className="itemValue">{bookDetails.book_description}</span>
+                  <span className="itemKey">Publisher Number</span>
+                  <span className="itemValue">{bookDetails.book_code}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Category</span>

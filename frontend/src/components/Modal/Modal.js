@@ -23,11 +23,12 @@ import Swal from "sweetalert2";
 function Modal({
   id,
   title,
-  description,
   author,
   publisher,
   total,
   img,
+  bookcode,
+  publishedDate,
   book,
   loading
 }) {
@@ -69,7 +70,7 @@ function Modal({
         book_id: id,
         book_title: title,
         user_name: user[0].username,
-        status_peminjaman: false,
+        status_peminjaman: "menunggu approval",
         approved: "waiting",
         timeStamp: moment().format("YYYY-MM-DD"),
       });
@@ -90,16 +91,15 @@ function Modal({
         data-target={`#${id}`}
       >
         <img
-          className="img-fluid book-detail mx-auto"
+          className="img-fluid book-detail mx-auto img-thumbnail"
           src={img}
           alt="project-img"
           style={{ width: "140px", height: "140px" }}
         />
-        {/* Description */}
+        
         <div className="project-item-info d-flex mx-auto">
           <div className="project-item-info-content">
             <h4 href="project-item-title">{title}</h4>
-            <p>{description}</p>
           </div>
         </div>
       </div>
@@ -113,9 +113,9 @@ function Modal({
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-dialog modal-dialog-centered" role="document" styles={{width: "115%"}}>
           <form onSubmit={handleSubmitRequest}>
-            <div className="modal-content">
+            <div className="modal-content" >
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
                   Book Detail
@@ -142,9 +142,11 @@ function Modal({
                   </div>
                   <div className="col-6 text-left">
                     <h4>{title}</h4>
-                    <p className="project-cat">Author: {author} </p>
-                    <p className="project-cat">Publisher: {publisher}</p>
-                    <p className="project-cat">Available: {total} </p>
+                    <p className="project-cat"><b>Author :</b> {author} </p>
+                    <p className="project-cat"><b>Publisher :</b> {publisher}</p>
+                    <p className="project-cat"><b>Kode Buku : </b>{bookcode}</p>
+                    <p className="project-cat"><b>Tanggal Publikasi : </b>{publishedDate}</p>
+                    <p className="project-cat"><b>Available :</b> {total} </p>
                   </div>
                 </div>
               </div>

@@ -24,7 +24,7 @@ const CategoryDetail = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6);
+  const [postsPerPage] = useState(9);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,7 +120,7 @@ const CategoryDetail = () => {
                 <div className="widget">
                   <h3 className="widget-title mt-4">Kategori</h3>
                   <select className="select-button orm-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleDropdownCategory} >
-                    <option className="select-option" value="" defaultValue>All</option>
+                    <option className="select-option" value="" selected>All</option>
                     {category &&
                       category.map((cat) => {
                         return (
@@ -166,6 +166,8 @@ const CategoryDetail = () => {
                         author={book.book_author}
                         publisher={book.book_publisher}
                         total={book.book_total}
+                        bookcode={book.book_code}
+                        publishedDate={book.date_published}
                         img={book.img}
                         timestamp={book.book_timeStamp}
                         books={book}

@@ -47,11 +47,11 @@ export const bookColumns = [
   },
   {
     field: "book_code",
-    headerName: "Kode Buku",
+    headerName: "Nomor Panggil",
     width: 130,
   },
   {
-    field: "published_date",
+    field: "date_published",
     headerName: "Tanggal Publikasi",
     width: 150,
   },
