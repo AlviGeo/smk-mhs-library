@@ -228,7 +228,6 @@ const Navbar = ({ children }) => {
                           Tentang Kami
                         </NavLink>
                       </li>
-
                       <li className="nav-item">
                         <NavLink to="/contact" className="nav-link">
                           Kontak

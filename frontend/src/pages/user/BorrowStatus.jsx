@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import { Button, Modal } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import "bootstrap/dist/js/bootstrap.bundle.js";
 import { useParams, Outlet } from "react-router-dom";
+
 // Alert
 import Swal from "sweetalert2";
 
@@ -21,12 +21,8 @@ import Navbar from "../../layouts/Navbar/Navbar";
 import Footer from "../../layouts/Footer/Footer";
 
 const BorrowStatus = () => {
-  const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
   const { id } = useParams();
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -176,7 +172,7 @@ const BorrowStatus = () => {
     );
   };
 
-  const BootyCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (
+  const BootyCheckbox = forwardRef(({ onClick, ...rest }, ref) => (
     <div className="form-check">
       <input
         htmlFor="booty-check"
