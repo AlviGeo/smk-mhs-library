@@ -40,8 +40,25 @@ const DatatableApproval = () => {
 
 
   const handleReject = async (id) => {
+    const historyRef = doc(db, "history", id)
+    const docSnap = await getDoc(historyRef);
+
     try {
-      await deleteDoc(doc(db, "history", id));
+      if (docSnap.exists()) {
+        console.log(docSnap.id, docSnap.data())
+      } else {
+        console.log("No such document!");
+        Swal.fire(
+          '',
+          'Data Not Found!',
+          'error'
+        )
+      }
+
+      await updateDoc(historyRef, {
+        approved: "rejected",
+        status_peminjaman: "ditolak"
+      })
       Swal.fire(
         '',
         'Request Rejected!',
@@ -57,7 +74,7 @@ const DatatableApproval = () => {
     setData(data.filter((item) => item.id !== id));
   };
 
-  const handleUpdate = async (id, bookId) => {
+  const handleApprove = async (id, bookId) => {
 
     const historyRef = doc(db, "history", id)
     const bookRef = doc(db, "books", bookId)
@@ -77,11 +94,11 @@ const DatatableApproval = () => {
 
       await updateDoc(historyRef, {
         approved: "approved",
-        book_status: "Unavailable",
-        status_peminjaman: true
+        status_peminjaman: "sedang dipinjam"
       })
       await updateDoc(bookRef, {
-        book_total: docSnap.data().book_total-1
+        book_total: docSnap.data().book_total-1,
+        times_borrowed: docSnap.data().times_borrowed+1
       })
       Swal.fire(
         '',
@@ -102,7 +119,7 @@ const DatatableApproval = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-              <div className="viewButton" onClick={() => handleUpdate(params.row.id, params.row.book_id)}>Approve</div>
+              <div className="viewButton" onClick={() => handleApprove(params.row.id, params.row.book_id)}>Approve</div>
             <div
               className="deleteButton"
               onClick={() => handleReject(params.row.id)}
@@ -117,7 +134,7 @@ const DatatableApproval = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        List Riwayat
+        Approval Buku
       </div>
       <DataGrid
         className="datagrid"

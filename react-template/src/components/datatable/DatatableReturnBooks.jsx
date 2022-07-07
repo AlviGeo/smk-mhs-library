@@ -17,7 +17,7 @@ const DatatableReturnBooks = () => {
       let list = [];
       try {
         const historyRef = collection(db, "history");
-        const querySnapshot = query(historyRef, where("approved", "==", "waiting"))
+        const querySnapshot = query(historyRef, where("approved", "==", "approved"), where("status_peminjaman", "==", "sedang dipinjam"))
         const unsub = onSnapshot(querySnapshot, (snapShot) => {
           let list = [];
           snapShot.docs.forEach(doc => {
@@ -57,7 +57,7 @@ const DatatableReturnBooks = () => {
     setData(data.filter((item) => item.id !== id));
   };
 
-  const handleUpdate = async (id, bookId) => {
+  const handleReturnBook = async (id, bookId) => {
 
     const historyRef = doc(db, "history", id)
     const bookRef = doc(db, "books", bookId)
@@ -81,7 +81,7 @@ const DatatableReturnBooks = () => {
         status_peminjaman: true
       })
       await updateDoc(bookRef, {
-        book_total: docSnap.data().book_total-1
+        book_total: docSnap.data().book_total+1
       })
       Swal.fire(
         '',
@@ -91,7 +91,6 @@ const DatatableReturnBooks = () => {
     } catch (err) {
       console.log(err);
     }
-
   }
 
   const actionColumn = [
@@ -102,12 +101,11 @@ const DatatableReturnBooks = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-              <div className="viewButton" onClick={() => handleUpdate(params.row.id, params.row.book_id)}>Approve</div>
             <div
               className="deleteButton"
-              onClick={() => handleReject(params.row.id)}
+              onClick={() => handleReturnBook(params.row.id, params.row.book_id)}
             >
-              Reject
+              Return Book
             </div>
           </div>
         );
@@ -117,7 +115,7 @@ const DatatableReturnBooks = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        List Riwayat
+        Pengembalian Buku
       </div>
       <DataGrid
         className="datagrid"

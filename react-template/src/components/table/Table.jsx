@@ -38,8 +38,7 @@ const List = () => {
     fetchData()
 
     const historyRef = collection(db, "history");
-    const q = query(historyRef, where("timeStamp", "<=", getCurrentDate), where("timeStamp", ">", getLastMonth))
-    const q2 = query(historyRef, where("status_peminjaman", "==", true), where("approved", "==", "approved"))
+    const q2 = query(historyRef, where("status_peminjaman", "==", "sedang dipinjam"), where("approved", "==", "approved"))
     
     const unsub = onSnapshot(q2, (snapShot) => {
       let list = [];
