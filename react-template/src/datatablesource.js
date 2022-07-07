@@ -46,8 +46,13 @@ export const bookColumns = [
     width: 160,
   },
   {
-    field: "book_description",
-    headerName: "Deskripsi",
+    field: "book_code",
+    headerName: "Kode Buku",
+    width: 130,
+  },
+  {
+    field: "published_date",
+    headerName: "Tanggal Publikasi",
     width: 150,
   },
   {

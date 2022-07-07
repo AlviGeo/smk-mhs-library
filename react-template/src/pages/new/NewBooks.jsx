@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/Navbar";
 import "./newBook.scss";
 import { useNavigate } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import TextField from '@mui/material/TextField';
 
 // Date Formating
 import moment from "moment";
@@ -20,13 +21,16 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 const New = ({ inputs, title }) => {
+  let todayDate = new Date().toISOString().slice(0, 10);
+
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
   const [category, setCategory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  const [datepicker, setDatepicker] = useState(todayDate);
   
+  console.log(todayDate)
   // const [dropdown, setDropdown] = useState()
   const navigate = useNavigate()
 
@@ -92,12 +96,19 @@ const New = ({ inputs, title }) => {
     setData({ ...data, [id]: value });
   };
 
+  const handleDatepicker = (e) => {
+    setDatepicker(e.target.value);
+  }
+
   const handleAdd = async (e) => {
     e.preventDefault();
     
     try {
       await addDoc(collection(db, "books"), {
-        ...data, category: selectedCategory,
+        ...data, 
+        category: selectedCategory, 
+        published_date: datepicker, 
+        times_borrowed:0,
         timeStamp: moment().format('YYYY-MM-DD'),
       });
       navigate(-1)
@@ -142,36 +153,44 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  {input.type === "text" || input.type === "number" ? <input
+                  {input.type === "text" || input.type === "number" ? 
+                  <input
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
                     onChange={handleInput}
                     required
-                  /> :  <FormControl sx={{ m: 2, width: 120 }} size="small">
-                  <InputLabel id="demo-select-small" >Select...</InputLabel>
-                  <Select
+                  /> :  input.type === "date" ? 
+                  <TextField
+                    id={input.id}
                     type={input.type}
-                    value={selectedCategory}
-                    placeholder={input.placeholder}
-                    onChange={handleDropdownCategory}
-                    required
-                    styles={{paddingRight: "100px"}}
-                  >
-                    <MenuItem value="" disabled>
-                      <em>None</em>
-                    </MenuItem>
-                    
+                    defaultValue="2017-05-24"
+                    placeholder={input.placeholder} 
+                    onChange={handleDatepicker}
+                  /> : <FormControl sx={{ marginTop: 2, width: 120 }} size="small">
+                <InputLabel id="demo-select-small" >Select...</InputLabel>
+                <Select
+                  type={input.type}
+                  value={selectedCategory}
+                  placeholder={input.placeholder}
+                  onChange={handleDropdownCategory}
+                  required
+                  styles={{paddingRight: "100px"}}
+                >
+                  <MenuItem value="" disabled>
+                    <em>None</em>
+                  </MenuItem>
+                  
 
-                    {category && category.map((cat) => {
-                      return (
-                      <MenuItem key={cat.id} value={cat.category_name}>
-                        {cat.category_name}
-                        </MenuItem>
-                      )
-                    })}
-                  </Select>
-                </FormControl>} 
+                  {category && category.map((cat) => {
+                    return (
+                    <MenuItem key={cat.id} value={cat.category_name}>
+                      {cat.category_name}
+                      </MenuItem>
+                    )
+                  })}
+                </Select>
+              </FormControl>} 
                 
                 </div>
               ))}

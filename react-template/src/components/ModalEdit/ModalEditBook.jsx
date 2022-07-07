@@ -40,12 +40,13 @@ const theme = createTheme({
   },
 });
 
-function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bookStatus, id, key, bookDetails, bookTotal, bookPublisher, bookImage}) {
+function ModalEditBook({bookTitle, bookAuthor, bookCategory, bookStatus, id, key, bookDetails, bookTotal, bookPublisher, bookImage, bookPublishedDate, bookCode}) {
 
   const [title, setTitle] = useState(bookTitle);
   const [author, setAuthor] = useState(bookAuthor);
   const [publisher, setPublisher] = useState(bookPublisher);
-  const [description, setDescription] = useState(bookDescription);
+  const [bookcode, setBookcode] = useState(bookCode);
+  const [publishedDate, setpublishedDate] = useState(bookPublishedDate);
   const [total, setTotal] = useState(bookTotal);
   const [category, setCategory] = useState(bookCategory);
 
@@ -70,9 +71,10 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
     try {
       await updateDoc(bookEditRef, {
         book_author: author,
-        book_description: description,
         book_title: title,
         book_publisher: publisher,
+        book_code: bookcode,
+        published_date: publishedDate,
         book_total: total,
         category: category,
       })
@@ -106,7 +108,7 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
         aria-describedby="child-modal-description"
       >
         <form onSubmit={handleUpdate}>
-        <Box sx={{ ...style, width: 550, height: 530, marginTop: "5px" }}>
+        <Box sx={{ ...style, width: 550, height: 450, marginTop: "5px" }}>
           <h2 id="child-modal-title">Edit Book Information</h2>
           <Grid container spacing={2} columns={16}>
             <Grid item xs={8}>
@@ -145,20 +147,30 @@ function ModalEditBook({bookTitle, bookAuthor, bookDescription, bookCategory, bo
                     />
             </Grid>
             <Grid item xs={8}>
+            <p className="itemKey">Kode Buku</p>
+                    <TextField
+                    onChange={(e) => setBookcode(e.target.value)}
+                    name="code"
+                    defaultValue={bookcode}
+                    size="small"
+                    />
+            </Grid>
+            
+            <Grid item xs={8}><p className="itemKey">Tanggal Publikasi</p>
+                    <TextField
+                    multiline
+                    onChange={(e) => setpublishedDate(e.target.value)}
+                    name="published_date"
+                    defaultValue={bookPublishedDate}
+                    size="small"
+                    />
+            </Grid>
+            <Grid item xs={8}>
             <p className="itemKey">Category</p>
                     <TextField
                     onChange={(e) => setCategory(e.target.value)}
                     name="category"
                     defaultValue={bookCategory}
-                    size="small"
-                    />
-            </Grid>
-            <Grid item xs={8}><p className="itemKey">Description</p>
-                    <TextField
-                    multiline
-                    onChange={(e) => setDescription(e.target.value)}
-                    name="description"
-                    defaultValue={bookDescription}
                     size="small"
                     />
             </Grid>

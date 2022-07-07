@@ -78,6 +78,8 @@ const BookDetails = () => {
               bookTotal={bookDetails.book_total}
               key={bookDetails.id}
               id={bookDetails.id}
+              bookCode={bookDetails.book_code}
+              bookPublishedDate={bookDetails.published_date}
               />
             </div>
               </div>
