@@ -240,8 +240,5 @@ jQuery(function ($) {
 			});
 		}
 		mediaPopup();
-
 	});
-
-
 });
