@@ -1,5 +1,10 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/62235952/178112276-6a7284bd-a117-4d96-9850-fb1c5c8a2e09.jpg" />
+</p>
+
 <h3 align="center">
   SMK Multistudi High School Library Website
+</h3>
 
 # Deployed Website
 
