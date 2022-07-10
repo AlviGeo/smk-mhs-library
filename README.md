@@ -44,3 +44,6 @@ npm install
 ```
 npm start
 ```
+
+# Features
+
