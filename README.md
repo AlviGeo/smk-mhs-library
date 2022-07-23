@@ -6,6 +6,20 @@
   SMK Multistudi High School Library Website
 </h3>
 
+# Table of Contents
+
+<ol>
+  <li><a href="#built-with">Built With</a></li>
+  <li><a href="#deployed-website">Deployed Website</a></li>
+  <li>
+    <a href="#getting-started">Getting Started</a>
+    <ul>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+    </ul>
+  </li>
+  <li><a href="#deployment">User & Admin Deployment</a></li>
+</ol>
+
 # Deployed Website
 
 - Users Landing Page = https://multistudi-library.web.app/
@@ -45,5 +59,14 @@ npm install
 npm start
 ```
 
-# Features
+<p align="right">(<a href="#top">back to table of contents</a>)</p>
 
+## Deployment
+
+1. cd into frontend / react-template
+2. npm run build
+3. cd ..
+4. For hosting admin folder = firebase deploy --only hosting:admin 
+5. For hosting user folder = firebase deploy --only hosting:public
+
+<p align="right">(<a href="#top">back to table of contents</a>)</p>
