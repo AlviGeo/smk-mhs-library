@@ -156,11 +156,11 @@ function ModalEditBook({bookTitle, bookAuthor, bookCategory, bookStatus, id, key
                     />
             </Grid>
             
-            <Grid item xs={8}><p className="itemKey">Tanggal Publikasi</p>
+            <Grid item xs={8}><p className="itemKey">Tahun Publikasi</p>
                     <TextField
                     multiline
                     onChange={(e) => setpublishedDate(e.target.value)}
-                    name="published_date"
+                    name="date_published"
                     defaultValue={bookPublishedDate}
                     size="small"
                     />

@@ -113,7 +113,7 @@ export const dashboardColumns = [
   },
   {
     field: "timeStamp",
-    headerName: "Kapan Pinjam",
+    headerName: "Tanggal Peminjaman",
     width: 200,
     // valueGetter: (params) =>
     //   `${params.row.firstName || ""} ${params.row.lastName || ""}`,

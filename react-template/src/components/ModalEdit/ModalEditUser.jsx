@@ -68,7 +68,7 @@ function ModalEditUser({currentEmail, currentUsername, id}) {
       })
       Swal.fire(
         '',
-        'Buku Berhasil di Update!',
+        'User Berhasil di Update!',
         'success'
       )
       handleBack()
@@ -76,7 +76,7 @@ function ModalEditUser({currentEmail, currentUsername, id}) {
       console.log(err.message);
       Swal.fire(
         '',
-        'Buku Gagal di Update!',
+        'User Gagal di Update!',
         'error'
       )
     }

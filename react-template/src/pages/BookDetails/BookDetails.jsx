@@ -79,7 +79,7 @@ const BookDetails = () => {
               key={bookDetails.id}
               id={bookDetails.id}
               bookCode={bookDetails.book_code}
-              bookPublishedDate={bookDetails.published_date}
+              bookPublishedDate={bookDetails.date_published}
               />
             </div>
               </div>
