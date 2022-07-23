@@ -15,6 +15,7 @@
     <a href="#getting-started">Getting Started</a>
     <ul>
       <li><a href="#prerequisites">Prerequisites</a></li>
+      <li><a href="#environment-variables">Environment Variables</a></li>
     </ul>
   </li>
   <li><a href="#deployment">User & Admin Deployment</a></li>
@@ -58,6 +59,21 @@ npm install
 
 ```
 npm start
+```
+
+## Environment Variables
+File konfigurasi layanan MHS Library ditulis menggunakan .env. File ini harus berada di dalam folder src dengan contoh file lengkap seperti berikut ini.
+
+```env
+#filename: .env
+REACT_APP_FIREBASE_API_KEY=""
+REACT_APP_FIREBASE_AUTH_DOMAIN=""
+REACT_APP_FIREBASE_DATABASE_URL=""
+REACT_APP_FIREBASE_PROJECT_ID=""
+REACT_APP_FIREBASE_STORAGE_BUCKET=""
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=""
+REACT_APP_FIREBASE_APP_ID=""
+
 ```
 
 <p align="right">(<a href="#top">back to table of contents</a>)</p>
