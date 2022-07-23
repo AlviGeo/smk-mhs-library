@@ -1,7 +1,11 @@
 #jumlah-buku {
     padding: 50px;
     border: 2px solid #FEB83C;
+}
 
+#jumlah-user {
+    padding: 50px;
+    border: 2px solid #FEB83C;
 }
 
 .cari-buku {

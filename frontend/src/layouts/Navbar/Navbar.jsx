@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // Import Context
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 
-import Swal from "sweetalert2";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+import {db} from "../../firebase-config";
 
 // Images
 import logo from "../../components/images/logo-mhs.png";
@@ -14,6 +16,24 @@ import logo from "../../components/images/logo-mhs.png";
 const Navbar = ({ children }) => {
   const { dispatch: authDispatch } = useContext(AuthContext);
   const navigate = useNavigate();
+  
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const unsub = onSnapshot(collection(db, "users"), (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach(doc => {
+        // console.log(doc.id)
+        list.push({id:doc.id, ...doc.data()});
+      })
+      setUsers(list)
+    }, (error) => {
+      console.log(error);
+    })
+    return () => {
+      unsub();
+    }
+  }, []);
 
   const handleLogout = async () => {
     signOut(auth)

@@ -74,10 +74,22 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <div className="ts-intro">
-                <div id="jumlah-buku" className="text-center" style={{borderWidth: "thick"}}>
-                  <h3>Jumlah Buku</h3>
-                  <h4 style={{ color: "#FEB83C"}}>{books.length}</h4>
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="ts-intro">
+                    <div id="jumlah-buku" className="text-center mt-3">
+                    <h3>Jumlah Buku</h3>
+                    <h4 style={{ color: "#FEB83C"}}>{books.length}</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="ts-intro">
+                    <div id="jumlah-user" className="text-center mt-3">
+                    <h3>Total Kunjungan</h3>
+                    <h4 id="count" style={{ color: "#FEB83C"}}>0</h4>
+                    </div>
+                  </div>
                 </div>
               </div>
               {/* Intro box end */}
