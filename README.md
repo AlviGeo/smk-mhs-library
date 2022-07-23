@@ -9,8 +9,8 @@
 # Table of Contents
 
 <ol>
-  <li><a href="#built-with">Built With</a></li>
   <li><a href="#deployed-website">Deployed Website</a></li>
+  <li><a href="#built-with">Built With</a></li>
   <li>
     <a href="#getting-started">Getting Started</a>
     <ul>
@@ -18,6 +18,7 @@
     </ul>
   </li>
   <li><a href="#deployment">User & Admin Deployment</a></li>
+  <li><a href="#authors">Authors</a></li>
 </ol>
 
 # Deployed Website
@@ -70,3 +71,6 @@ npm start
 5. For hosting user folder = firebase deploy --only hosting:public
 
 <p align="right">(<a href="#top">back to table of contents</a>)</p>
+
+## Authors
+- [Alvi Geovanny](https://github.com/AlviGeo)
