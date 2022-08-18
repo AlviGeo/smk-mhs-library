@@ -99,22 +99,17 @@ const CategoryDetail = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 order-1 order-lg-0">
-              <form className="form-inline my-2 my-lg-0">
+              <form className="form-inline my-2 my-lg-2" >
                 <input
                   className="form-control mr-sm-2"
                   type="search"
                   placeholder="Cari Buku.."
+                  style={{width: "250px"}}
                   aria-label="Search"
                   onChange={(event) => {
                     setSearchBooksTitle(event.target.value);
                   }}
                 />
-                <button
-                  className="btn btn-outline-warning my-2 my-sm-0"
-                  type="submit"
-                >
-                  Search
-                </button>
               </form>
               <div className="sidebar sidebar-left">
                 <div className="widget">
