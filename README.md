@@ -63,7 +63,7 @@ npm start
 <p align="right">(<a href="#top">back to table of contents</a>)</p>
 
 ## Environment Variables
-File konfigurasi layanan MHS Library ditulis menggunakan .env. File ini harus berada di dalam folder src dengan contoh file lengkap seperti berikut ini.
+The MHS Library service configuration file is written using .env. This file should be in the src folder with a complete sample file like the following.
 
 ```env
 #filename: .env
