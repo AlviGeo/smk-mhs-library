@@ -77,8 +77,7 @@ const DatatableReturnBooks = () => {
 
       await updateDoc(historyRef, {
         approved: "approved",
-        book_status: "Unavailable",
-        status_peminjaman: true
+        status_peminjaman: "sudah dikembalikan"
       })
       await updateDoc(bookRef, {
         book_total: docSnap.data().book_total+1

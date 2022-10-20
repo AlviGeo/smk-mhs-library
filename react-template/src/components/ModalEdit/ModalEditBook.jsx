@@ -74,7 +74,7 @@ function ModalEditBook({bookTitle, bookAuthor, bookCategory, bookStatus, id, key
         book_title: title,
         book_publisher: publisher,
         book_code: bookcode,
-        published_date: publishedDate,
+        date_published: publishedDate,
         book_total: total,
         category: category,
       })
