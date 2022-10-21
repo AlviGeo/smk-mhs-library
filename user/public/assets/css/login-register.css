@@ -1,0 +1,11 @@
+.login,
+.image {
+    min-height: 100vh
+}
+
+.bg-image {
+    background-image: url('../images/login.png');
+    background-repeat: no-repeat;
+    background-size: 500px 300px;
+    background-position: center center
+}

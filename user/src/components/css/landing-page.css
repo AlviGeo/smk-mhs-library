@@ -1,0 +1,27 @@
+#jumlah-buku {
+    padding: 50px;
+    border: 2px solid #FEB83C;
+}
+
+#jumlah-user {
+    padding: 50px;
+    border: 2px solid #FEB83C;
+}
+
+.cari-buku {
+    /* border-color: rgb(242, 229, 213); */
+    float: right;
+}
+
+.list-buku:hover {
+    cursor: pointer;
+}
+
+
+.home-slider-one {
+    background-image: url("../images/home/landing-page-img.png");
+}
+
+.home-slider-two {
+    background-image: url("../images/home/landing-page-img2.jpg");
+}
