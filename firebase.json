@@ -1,10 +1,10 @@
 {
   "hosting": [{
     "target": "admin",
-    "public": "react-template/build"
+    "public": "admin/build"
   }, {
     "target": "public",
-    "public": "frontend/build"
+    "public": "user/build"
   },
   {
     "ignore": [
